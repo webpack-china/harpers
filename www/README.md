@@ -1,16 +1,5 @@
 ## application
 
-### Getting Started
-
-```
-npm install
-npm start
-```
-
-visit: http://localhost:8080/
-
-demo: http://localhost:8080/test/index
-
 ### start server
 
 *development*
