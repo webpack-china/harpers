@@ -34,3 +34,6 @@ app/
 dist/
 
 runtime/
+.vscode
+.jshintignore
+.jshintrc
