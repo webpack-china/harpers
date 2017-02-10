@@ -20,3 +20,14 @@ global.USER_STATUS = {
   NORMAL: 0,
   FORBIDDEN: 1  //user forbidden
 };
+
+
+global.OP = {
+  QUESTION: {
+    ADD: {
+      op_name: 100,
+      op_value: 10,
+      op_label: 'Add Question'
+    }
+  }
+}
