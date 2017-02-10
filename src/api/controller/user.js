@@ -14,6 +14,7 @@ export default class extends Base {
    * get user
    */
   getAction() {
+    return super.getAction();
   }
 
   /**
@@ -28,22 +29,28 @@ export default class extends Base {
       return this.redirect(login.getAuthorizeUrl());
     }
 
-    let accessToken = await login.getAccessToken(code);
-    let user = await login.getUserInfo(accessToken);
-    return this.success(user);
+    try {
+      let accessToken = await login.getAccessToken(code);
+      let user = await login.getUserInfo(accessToken);
+
+      let res = await this.modelInstance.addUser(type, user, this.ip());
+      return this.success(res.id);
+    } catch(e) {
+      return this.fail( e.message);
+    }
   }
 
   /**
    * update user info
    */
   putAction() {
-
+    return super.putAction();
   }
 
   /**
    * user write off
    */
   deleteAction() {
-
+    return super.deleteAction();
   }
 }

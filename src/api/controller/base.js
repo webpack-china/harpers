@@ -6,6 +6,6 @@ export default class extends think.controller.rest {
    */
   constructor(...args) {
     super(...args);
-    this._method = "_method";
+    this._method = '_method';
   }
 }
