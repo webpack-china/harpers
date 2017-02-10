@@ -10,3 +10,13 @@
  *     
  * }
  */
+
+global.USER_TYPE = {
+  NORMAL: 0,
+  ADMIN: 1  //admin user
+};
+
+global.USER_STATUS = {
+  NORMAL: 0,
+  FORBIDDEN: 1  //user forbidden
+};

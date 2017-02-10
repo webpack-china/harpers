@@ -53,14 +53,44 @@ export default class extends think.service.base {
   /**
    * get user info
    */
-  getUserInfo(token) {
+  async getUserInfo(req) {
+    let {code} = req.get();
+    if( !code ) {
+      return req.redirect(this.getAuthorizeUrl());
+    }
+
+    let accessToken = await this.getAccessToken(code);
     return request.get({
       url: `${GITHUB_API_URL}/user`,
       headers: {
         'User-Agent': 'via harpers',
-        'Authorization': `token ${token}`
+        'Authorization': `token ${accessToken}`
       },
       json: true
     });
+  }
+
+  /**
+   * sign up user
+   */
+  async signUp(req) {
+    let userInfo = await this.getUserInfo(req);
+    let user = {
+      name: userInfo.login,
+      nickname: userInfo.name,
+      email: userInfo.email,
+      github: userInfo.login
+    };
+    let res = await req.model('user').addUser(user, req.ip());
+    return res.id;
+  }
+
+  /**
+   * login
+   */
+  async signIn(req) {
+    let user = await this.getUserInfo(req);
+    user = await req.model('user').where({name: user.login, email: user.email}).find();
+    return user;
   }
 }

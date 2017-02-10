@@ -18,25 +18,19 @@ export default class extends Base {
   }
 
   /**
-   * registry user
+   * registry user and login
    */
   async postAction() {
     let {type, code} = this.get();
     let LoginService = think.service('login/' + this.get('type'), 'api');
     let login = new LoginService(this.config('login')[type]);
 
-    if( !code ) {
-      return this.redirect(login.getAuthorizeUrl());
-    }
-
     try {
-      let accessToken = await login.getAccessToken(code);
-      let user = await login.getUserInfo(accessToken);
-
-      let res = await this.modelInstance.addUser(type, user, this.ip());
-      return this.success(res.id);
+      let userId = await login.signUp(this);
+      this.http._userId = userId;
+      return this.action('token', 'post');
     } catch(e) {
-      return this.fail( e.message);
+      return this.fail( e.message );
     }
   }
 
@@ -50,7 +44,7 @@ export default class extends Base {
   /**
    * user write off
    */
-  deleteAction() {
+  async deleteAction() {
     return super.deleteAction();
   }
 }
