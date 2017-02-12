@@ -2,7 +2,10 @@ import Base from './base';
 
 export default class extends Base {
   relation = {
-    tag: think.model.HAS_MANY
+    tag: think.model.HAS_MANY,
+    user: think.model.HAS_ONE,
+    answer: think.model.HAS_MANY,
+    comment: think.model.HAS_MANY
   }
   
   /**

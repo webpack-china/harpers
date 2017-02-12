@@ -3,6 +3,8 @@
  * config
  */
 export default {
+  resource_on: true,
+  resource_reg: /^((?:static|doc)\/|[^\/]+\.(?!json|jpg|png|css|js|html)\w+$)/,
   login: {
     github: {
       client_id: '',  //github client id

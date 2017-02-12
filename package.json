@@ -1,6 +1,6 @@
 {
-  "name": "thinkjs-application",
-  "description": "application created by thinkjs",
+  "name": "Harpers",
+  "description": "QA Forum Powered By ThinkJS",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.conf.js --quiet & node www/development.js",
@@ -41,5 +41,10 @@
     "webpack-dev-server": "^1.16.2"
   },
   "repository": "",
-  "license": "MIT"
+  "license": "MIT",
+  "apidoc": {
+    "title": "Harpers API 接口文档",
+    "url": "/api",
+    "sampleUrl": "/api"
+  }
 }

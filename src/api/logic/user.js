@@ -14,14 +14,27 @@ export default class extends think.logic.base {
   }
   
   /**
-   * get user
+   * @api {GET} /user 获取用户列表
+   * @apiGroup User
+   * @apiVersion 0.0.1
+   */
+  /**
+   * @api {GET} /user/:id 获取用户信息
+   * @apiGroup User
+   * @apiVersion 0.0.1
    */
   getAction() {
 
   }
 
   /**
-   * registry user
+   * @api {POST} /user 用户注册
+   * @apiGroup User
+   * @apiVersion 0.0.1
+   * @apiSampleRequest off
+   * @apiDescription 第三方账号注册需要跳转，非纯接口形式
+   * 
+   * @apiParam  {String}  [type="github"] 第三方注册类型
    */
   postAction() {
     this.rules = {
