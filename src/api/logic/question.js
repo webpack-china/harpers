@@ -35,7 +35,7 @@ export default class extends think.logic.base {
     };
   }
   /**
-   * @api {PUT} /question 更新问题
+   * @api {PUT} /question/:id 更新问题
    * @apiGroup  Question
    * @apiVersion  0.0.1
    * 
@@ -43,7 +43,18 @@ export default class extends think.logic.base {
    * @apiParam  {String[]}  tag 问题标签
    * @apiParam  {String}  markdown_content  问题内容
    */
+  /**
+   * @api {PUT} /question/:id?status=hidden 隐藏问题
+   * @apiGroup  Question
+   * @apiVersion  0.0.1
+   */
+  /**
+   * @api {PUT} /question/:id?status=close 关闭问题
+   * @apiGroup  Question
+   * @apiVersion  0.0.1
+   */
   putAction() {
     this.postAction();
+    this.rules.status = 'in:closed,hidden'
   }
 }
