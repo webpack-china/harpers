@@ -2,7 +2,7 @@
 /**
  * model
  */
-export default class extends think.model.base {
+export default class extends think.model.relation {
 
   /**
    * add question and answer log
