@@ -1,28 +1,21 @@
+## Harpers
 
-Application created by [ThinkJS](http://www.thinkjs.org)
+## Installation
 
-## Install dependencies
+1. Import database by `.sql` file in `/db`.
 
-```
-npm install
-```
+2. Update database configuration in `/src/common/config/db.js`.
 
-## Start server
+3. Set github login auth key in `/src/common/config/db.js`.
 
-```
-npm start
-```
+    Github redirect uri will like `xxx.com/api/user?_method=post&type=github`.
 
-### Develop
+4. Run `npm start`.
 
-visit: http://localhost:8080/
+## API Documentation
 
-demo: http://localhost:8080/test/index
+Open `xxx.com/doc/index.html`.
 
-## Deploy with pm2
+## Contribution
 
-Use pm2 to deploy app on production enviroment.
-
-```
-pm2 startOrReload pm2.json
-```
+## License

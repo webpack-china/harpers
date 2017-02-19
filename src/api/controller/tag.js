@@ -22,6 +22,10 @@ export default class extends Base {
    * update tag
    */
   putAction() {
+    if( !this.id ) {
+      return this.fail();
+    }
+    
     this.post('pathname', this.post('name'));
     return super.putAction();
   }
