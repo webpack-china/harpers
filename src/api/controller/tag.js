@@ -22,7 +22,7 @@ export default class extends Base {
    * update tag
    */
   putAction() {
-    this.postAction('pathname', this.postAction('name'));
+    this.post('pathname', this.post('name'));
     return super.putAction();
   }
 }

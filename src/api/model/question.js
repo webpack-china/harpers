@@ -83,4 +83,61 @@ export default class extends Base {
       throw e;
     }
   }
+
+  /**
+   * hide qustion
+   */
+  hideQuestion(question_id, user_id) {
+    return this.updateQuestionStatus(
+      question_id, 
+      user_id, 
+      QUESTION_STATUS.HIDE, 
+      OP.QUESTION.HIDE
+    );
+  }
+
+  /**
+   * close question
+   */
+  closeQuestion(question_id, user_id) {
+    return this.updateQuestionStatus(
+      question_id,
+      user_id,
+      QUESTION_STATUS.CLOSE,
+      OP.QUESTION.CLOSE
+    );
+  }
+
+  /**
+   * delete question
+   */
+  async deleteQuestion(question_id, user_id) {
+    try {
+      await this.startTrans();
+      await this.delete({id: question_id});
+      await this.addScore(think.extend({
+        question_id, 
+        user_id
+      }, OP.QUESTION.DELETE));
+      await this.commit();
+    } catch(e) {
+      await this.rollback();
+      throw e;
+    }
+  }
+
+  async updateQuestionStatus(question_id, user_id, status, op) {
+    try {
+      await this.startTrans();
+      await this.where({id: question_id}).update({status});
+      await this.addScore(think.extend({
+        question_id,
+        user_id,
+      }, op));
+      await this.commit();
+    } catch(e) {
+      await this.rollback();
+      throw e;
+    }
+  }
 }
