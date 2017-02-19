@@ -49,7 +49,7 @@ export default class extends think.logic.base {
    * @apiVersion  0.0.1
    */
   /**
-   * @api {PUT} /question/:id?status=close 关闭问题
+   * @api {PUT} /question/:id?status=closed 关闭问题
    * @apiGroup  Question
    * @apiVersion  0.0.1
    */

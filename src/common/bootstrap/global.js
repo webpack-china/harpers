@@ -21,7 +21,7 @@ global.USER_STATUS = {
   FORBIDDEN: 1  //user forbidden
 };
 
-globa.QUESTION_STATUS = {
+global.QUESTION_STATUS = {
   NORMAL: 0,
   CLOSE: 1,
   AUDITING: 2,
