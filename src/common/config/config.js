@@ -3,6 +3,7 @@
  * config
  */
 export default {
+  route_on: true,
   resource_on: true,
   resource_reg: /^((?:static|doc)\/|[^\/]+\.(?!json|jpg|png|css|js|html)\w+$)/,
   login: {
