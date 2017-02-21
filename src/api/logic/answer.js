@@ -5,6 +5,11 @@
  * @return {}     []
  */
 export default class extends think.logic.base {
+  /**
+   * @api {GET} /question/:question_id/answers  获取问题回答
+   * @apiGroup  Answer
+   * @apiVersion  0.0.1
+   */
   getAction() {
 
   }
