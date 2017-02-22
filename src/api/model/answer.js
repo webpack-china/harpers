@@ -45,12 +45,18 @@ export default class extends Base {
         return true;
       }
 
-      /** cancel accpted answer */
-      if( status === global.ANSWER_STATUS.ACCEPT ) {
-        await this.where({question_id, status: global.ANSWER_STATUS.ACCEPT}).update({status: global.ANSWER_STATUS.NORMAL});
-        /** @todo add cancel answer log */
+      if( answer.status === global.ANSWER_STATUS.ACCEPT ) {
+        /** accped answer can not be hidden again */
+        if( status === global.ANSWER_STATUS.HIDDEN ) {
+          throw new Error('accped answer can not hidden!');
+        }
+      } else {
+        /** cancel accpted answer */
+        if( status === global.ANSWER_STATUS.ACCEPT ) {
+          await this.where({question_id, status: global.ANSWER_STATUS.ACCEPT}).update({status: global.ANSWER_STATUS.NORMAL});
+          /** @todo add cancel answer log */
+        }
       }
-
       await this.where({id: answer.id}).update({status});
 
       score.user_id = answer.user_id;
