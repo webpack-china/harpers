@@ -23,6 +23,16 @@ export default class extends think.logic.base {
    * @apiGroup User
    * @apiVersion 0.0.1
    */
+  /**
+   * @api {GET} /user/:id/followers 获取关注列表
+   * @apiGroup  User
+   * @apiVersion  0.0.1
+   */
+  /**
+   * @api {GET} /user/:id/followed  获取关注列表
+   * @apiGroup  User
+   * @apiVersion  0.0.1
+   */
   getAction() {
 
   }
@@ -36,6 +46,11 @@ export default class extends think.logic.base {
    * 
    * @apiParam  {String}  [type="github"] 第三方注册类型
    */
+    /**
+     * @api {PUT} /user/:id/follower/:follow_id  新增关注者
+     * @apiGroup  User
+     * @apiVersion  0.0.1
+     */
   postAction() {
     this.rules = {
       type: 'string|required|in:github|default:github'
@@ -49,6 +64,11 @@ export default class extends think.logic.base {
 
   }
 
+  /**
+   * @api {DELETE} /user/:id/follower/:follow_id 取消关注
+   * @apiGroup  User
+   * @apiVersion  0.0.1
+   */
   /**
    * user write off
    */

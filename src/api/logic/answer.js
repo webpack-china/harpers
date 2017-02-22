@@ -15,6 +15,16 @@ export default class extends think.logic.base {
   }
 
   /**
+   * @api {POST} /question/:question_id/answer/:answer_id/against_count 反对回答
+   * @apiGroup  Answer
+   * @apiVersion 0.0.1
+   */
+  /**
+   * @api {POST} /question/:question_id/answer/:answer_id/agree_count 赞同回答
+   * @apiGroup  Answer
+   * @apiVersion 0.0.1
+   */
+  /**
    * @api {POST} /question/:question_id/answer 新增回答
    * @apiGroup Answer
    * @apiVersion 0.0.1
@@ -36,11 +46,11 @@ export default class extends think.logic.base {
    * @apiParam  {String}  markdown_content  答案内容
    */
   /**
-   * @api {PUT} /question/:question_id/answer/:answer_id  采纳，取消采纳答案
+   * @api {PUT} /question/:question_id/answer/:answer_id  采纳，取消，隐藏答案
    * @apiGroup  Answer
    * @apiVersion  0.0.1
    * 
-   * @apiParam  {String=accept,cancel}  status
+   * @apiParam  {String=accept,cancel,hidden}  status
    */
   putAction() {
     this.rules = {
@@ -49,5 +59,19 @@ export default class extends think.logic.base {
       markdown_content: 'string|required',
       status: 'required|in:hidden,accept,cancel,close'
     };
+  }
+
+  /**
+   * @api {DELETE} /question/:question_id/answer/:answer_id/against_count 取消反对回答
+   * @apiGroup  Answer
+   * @apiVersion 0.0.1
+   */
+  /**
+   * @api {DELETE} /question/:question_id/answer/:answer_id/agree_count 取消赞同回答
+   * @apiGroup  Answer
+   * @apiVersion 0.0.1
+   */
+  deleteAction() {
+
   }
 }
