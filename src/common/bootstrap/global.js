@@ -30,6 +30,13 @@ global.QUESTION_STATUS = {
   REPORT: 5
 };
 
+global.ANSWER_STATUS = {
+  NORMAL: 0,
+  ACCEPT: 1,
+  HIDDEN: 2,
+  REPORT: 3
+};
+
 global.OP = {
   USER: {
     ADD: {
@@ -80,6 +87,16 @@ global.OP = {
       op_name: 152,
       op_value: -5,
       op_label: 'Delete Answer'
+    },
+    ACCEPT: {
+      op_name: 153,
+      op_value: 10,
+      op_label: 'Accept Answer'
+    },
+    HIDDEN: {
+      op_name: 154,
+      op_value: -5,
+      op_label: 'Hidden Answer'
     }
   },
   TAG: {

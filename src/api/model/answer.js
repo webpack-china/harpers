@@ -1,6 +1,68 @@
 import Base from './base';
 
 export default class extends Base {
+  acceptAnswer(question_id, answer_id, user_id) {
+    let status = {
+      question_id,
+      answer_id,
+      user_id,
+      status: global.ANSWER_STATUS.ACCEPT
+    };
+
+    let score = think.extend({
+      question_id,
+      answer_id
+    }, OP.ANSWER.ACCPET);
+
+    return this.updateAnswerStatus(status, score);
+  }
+
+  hideAnswer(question_id, answer_id, user_id) {
+    let status = {
+      question_id,
+      answer_id,
+      user_id,
+      status: global.ANSWER_STATUS.HIDDEN
+    };
+
+    let score = think.extend({
+      question_id,
+      answer_id
+    }, OP.ANSWER.HIDDEN);
+
+    return this.updateAnswerStatus(status, score);
+  }
+
+  async updateAnswerStatus({question_id, answer_id, user_id, status}, score) {
+    try {
+      await this.startTrans();
+      let answer = await this.where({question_id, answer_id}).find();
+      if( think.isEmpty(answer) ) {
+        throw new Error('answer not exist!');
+      } 
+
+      if( answer.status === status ) {
+        return true;
+      }
+
+      /** cancel accpted answer */
+      if( status === global.ANSWER_STATUS.ACCEPT ) {
+        await this.where({question_id, status: global.ANSWER_STATUS.ACCEPT}).update({status: global.ANSWER_STATUS.NORMAL});
+        /** @todo add cancel answer log */
+      }
+
+      await this.where({id: answer.id}).update({status});
+
+      score.user_id = answer.user_id;
+      await this.addScore(score);
+    
+      await this.where({question_id, answer_id}).update({status});
+    } catch(e) {
+      await this.rollback();
+      throw e;
+    }
+  }
+
   async addAnswer(answer, ip) {
     let create_time = think.datetime();
     answer = think.extend({
