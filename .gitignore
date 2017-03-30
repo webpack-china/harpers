@@ -37,3 +37,5 @@ runtime/
 .vscode
 .jshintignore
 .jshintrc
+
+.DS_Store
