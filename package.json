@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node ./www/web/tools/script.js --mode=development & node www/development.js",
     "dist": "node ./www/web/tools/script.js --mode=production",
-    "source": "node ./www/web/tools/script.js --mode=source",
     "compile": "npm run lint && npm run test && babel src/ --out-dir app/",
     "test": "ava",
     "lint": "eslint src/",
