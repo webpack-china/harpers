@@ -1,10 +1,12 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var webpack = require('webpack');
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpackHotMiddleware = require("webpack-hot-middleware")
-var proxy = require('proxy-middleware');
+const express = require('express'),
+	app = express(),
+	path = require('path'),
+	fs = require('fs'),
+	webpack = require('webpack'),
+	webpackDevMiddleware = require("webpack-dev-middleware"),
+	webpackHotMiddleware = require("webpack-hot-middleware"),
+	proxy = require('proxy-middleware');
+
 
 var webpackConfig = require("./webpack.base.js"),
 	config = require("../config/project"),
@@ -22,6 +24,32 @@ app.use(webpackDevMiddleware(compiler, {
 		colors: true
 	},
 }));
+
+// 把内存中的 html 文件内容写到thinkjs的模板目录下
+var hasWrite = false;
+app.use(function(req, res, next) {
+
+	if (hasWrite) {
+		return next();
+	}
+
+	var mfs = compiler.outputFileSystem;
+	
+	Object.keys(mfs.data).forEach((file) => {
+		if (!!~file.indexOf('html')) {
+			let bufferContent = mfs.data[file],
+				content = bufferContent.toString();
+
+			let filepath = path.join(__dirname, "../../../view/home/" + file);
+
+			fs.writeFileSync(filepath, content, "utf-8");
+
+		}
+	});
+
+	hasWrite = true;
+	next();
+});
 
 app.use(webpackHotMiddleware(compiler, {
     // 这里和上面的client配合，可以修正 webpack_hmr 的路径为项目路径的子路径，而不是直接成为 host 子路径（从publicPath开始，而不是根开始）
