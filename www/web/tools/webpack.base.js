@@ -3,13 +3,10 @@
 const path = require('path'),
       os = require('os'),
       utils = require('steamer-webpack-utils'),
-      webpack = require('webpack'),
-      webpackMerge = require('webpack-merge');
+      webpack = require('webpack');
 
 var config = require('../config/project'),
     configWebpack = config.webpack,
-    configWebpackMerge = config.webpackMerge,
-    configCustom = config.custom,
     env = process.env.NODE_ENV,
     isProduction = env === 'production';
 
@@ -18,7 +15,10 @@ var Clean = require('clean-webpack-plugin'),
     SpritesmithPlugin = require('webpack-spritesmith'),
     WebpackMd5Hash = require('webpack-md5-hash'),
     UglifyJsParallelPlugin = require('webpack-uglify-parallel'),
-    StylelintWebpackPlugin = require('stylelint-webpack-plugin');
+    StylelintWebpackPlugin = require('stylelint-webpack-plugin'),
+    HtmlResWebpackPlugin = require('html-res-webpack-plugin'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    HappyPack = require('happypack');
 
 var baseConfig = {
     context: configWebpack.path.src,
@@ -44,25 +44,66 @@ var baseConfig = {
                     loaders: {
                         css: 'vue-style-loader!css-loader!postcss-loader',
                         less: 'vue-style-loader!css-loader!postcss-loader!less-loader',
-                        sass: 'vue-style-loader!css-loader!postcss-loader!sass-loader',
-                        scss: 'vue-style-loader!css-loader!postcss-loader!sass-loader',
-                        stylus: 'vue-style-loader!css-loader!postcss-loader!stylus-loader',
-                        styl: 'vue-style-loader!css-loader!postcss-loader!stylus-loader',
                     }
                 },
                 exclude: /node_modules/
             },
             { 
                 test: /\.js$/,
-                loader: 'babel-loader',
-                options: {
-                    // verbose: false,
-                    cacheDirectory: './.webpack_cache/',
-                    presets: [
-                        ["es2015", {"loose": true}],
-                    ]
-                },
+                loader: 'happypack/loader?id=1',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                // 单独抽出样式文件
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader', 
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                localIdentName: '[name]-[local]-[hash:base64:5]',
+                                root: configWebpack.path.src,
+                                module: configWebpack.cssModule
+                            }
+                        },
+                        { loader: 'postcss-loader' },
+                    ]
+                }),
+                include: path.resolve(configWebpack.path.src)
+            },
+            {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader', 
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                localIdentName: '[name]-[local]-[hash:base64:5]',
+                                module: configWebpack.cssModule
+                            }
+                        },
+                        { loader: 'postcss-loader' },
+                        {
+                            loader:  'less-loader',
+                            options: {
+                                paths: [
+                                    configWebpack.path.src,
+                                    "node_modules"
+                                ]
+                            }
+                        }
+                    ]
+                })
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
+            {
+                test: /\.handlebars$/, 
+                loader: "handlebars-loader" 
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -87,11 +128,31 @@ var baseConfig = {
             "node_modules",
             path.join(configWebpack.path.src, "css/sprites")
         ],
-        extensions: [".js", ".jsx", ".css", ".scss", ".less", ".styl", ".png", ".jpg", ".jpeg", ".ico", ".ejs", ".pug", ".handlebars", "swf"],
+        extensions: [".js", ".jsx", ".css", ".less", ".png", ".jpg", ".jpeg", ".ico", ".handlebars", "swf"],
         alias: {}
     },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
+        new ExtractTextPlugin({
+            filename:  (getPath) => {
+              return getPath('css/' + configWebpack.contenthashName + '.css').replace('css/js', 'css');
+            },
+            allChunks: false,
+            disable: (isProduction || !configWebpack.extractCss) ? false : true,
+        }),
+        new HappyPack({
+            id: '1',
+            verbose: false,
+            loaders: [{
+                path: 'babel-loader',
+                options: {
+                    cacheDirectory: './.webpack_cache/',
+                    presets: [
+                        ["es2015", {"loose": true}],
+                    ]
+                },
+            }],
+        }),
         new StylelintWebpackPlugin({
             configFile: 'stylelintrc.js',
             context: 'inherits from webpack',
@@ -138,6 +199,20 @@ if (configWebpack.clean) {
     baseConfig.plugins.push(new Clean([isProduction ? configWebpack.path.dist : configWebpack.path.dev], {root: path.resolve()}));
 }
 
+configWebpack.html.forEach(function(page, key) {
+    baseConfig.plugins.push(new HtmlResWebpackPlugin({
+        mode: "html",
+        filename: configWebpack.path.distWebserver + "/" + page.key + ".html", //isProduction ? (config.webpack.path.distWebserver + "/" + page.key + ".html") : page.key + ".html",
+        template: page.path,
+        favicon: "www/web/src/favicon.ico",
+        htmlMinify: null,
+        entryLog: !key ? true : false,
+        templateContent: function(tpl) {
+            return tpl;
+        }
+    }));
+}); 
+
 configWebpack.static.forEach((item) => {
     baseConfig.plugins.push(new CopyWebpackPlugin([{
         from: item.src,
@@ -149,15 +224,8 @@ configWebpack.sprites = (configWebpack.spriteMode === "none") ? [] : configWebpa
 
 configWebpack.sprites.forEach(function(sprites) {
     let style = configWebpack.spriteStyle,
-        extMap = {
-            stylus: "styl",
-            less: "less",
-            sass: "sass",
-            scss: "scss"
-        },
         spriteMode = configWebpack.spriteMode,
         retinaTpl = (spriteMode === "retinaonly")? "_retinaonly" : "";
-
 
     let spritesConfig = {
         src: {
@@ -166,7 +234,7 @@ configWebpack.sprites.forEach(function(sprites) {
         },
         target: {
             image: path.join(configWebpack.path.src, "css/sprites/" + sprites.key + ".png"),
-            css: path.join(configWebpack.path.src, "css/sprites/" + sprites.key + "." + extMap[style]),
+            css: path.join(configWebpack.path.src, "css/sprites/" + sprites.key + ".less"),
         },
         spritesmithOptions: {
             padding: 10
@@ -192,26 +260,4 @@ configWebpack.sprites.forEach(function(sprites) {
     baseConfig.plugins.push(new SpritesmithPlugin(spritesConfig));
 });
 
-var userConfig = {
-    output: configCustom.getOutput(),
-    module: configCustom.getModule(),
-    resolve: configCustom.getResolve(),
-    externals: configCustom.getExternals(),
-    plugins: configCustom.getPlugins(),
-};
-
-var otherConfig = configCustom.getOtherOptions();
-
-for (let key in otherConfig) {
-    userConfig[key] = otherConfig[key];
-}
-
-baseConfig = configWebpackMerge.mergeProcess(baseConfig);
-
-var webpackConfig = webpackMerge.smartStrategy(
-    configWebpackMerge.smartStrategyOption
-)(baseConfig, userConfig);
-
-// console.log(JSON.stringify(webpackConfig, null, 4));
-
-module.exports = webpackConfig;
+module.exports = baseConfig;

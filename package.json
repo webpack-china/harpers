@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node ./www/web/tools/script.js --mode=development & node www/development.js",
+    "dist": "node ./www/web/tools/script.js --mode=production",
     "source": "node ./www/web/tools/script.js --mode=source",
     "compile": "npm run lint && npm run test && babel src/ --out-dir app/",
     "test": "ava",
@@ -34,12 +35,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "css-loader": "^0.26.1",
     "eslint": "^3.14.0",
-    "precommit-hook": "^3.0.0",
-    "vue": "^2.1.10",
-    "vue-loader": "^10.0.2",
-    "vue-template-compiler": "^2.1.10",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^1.16.2"
+    "precommit-hook": "^3.0.0"
   },
   "repository": "",
   "license": "MIT",
