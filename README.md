@@ -39,11 +39,11 @@ Authorization callback URL: http://localhost/api/user?_method=post&type=github
 fill Client ID and Client Secret in `/src/common/config/config.js`.
 ```
 
-4. Run `npm start`.
+4. Run `npm start`, open `http://127.0.0.1:9000/`
 
 ## API Documentation
 
-Open `xxx.com/doc/index.html`.
+Open `xxx.com/doc/index.html`, like `127.0.0.1:8360/doc/index.html`
 
 ## Contribution
 
