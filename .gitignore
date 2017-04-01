@@ -39,3 +39,9 @@ runtime/
 .jshintrc
 
 .DS_Store
+
+# web starter kit
+.webpack_cache
+.happypack
+npm-debug.log
+*.log

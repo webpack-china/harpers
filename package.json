@@ -3,7 +3,8 @@
   "description": "QA Forum Powered By ThinkJS",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.conf.js --quiet & node www/development.js",
+    "start": "node ./www/web/tools/script.js --mode=development & node www/development.js",
+    "source": "node ./www/web/tools/script.js --mode=source",
     "compile": "npm run lint && npm run test && babel src/ --out-dir app/",
     "test": "ava",
     "lint": "eslint src/",
