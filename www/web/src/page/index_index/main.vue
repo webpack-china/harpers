@@ -18,7 +18,6 @@
     <div class="container">
         <p class="steamer">Hello <span>{{name}}</span></p>
         <p class="less">less</p>
-        <p class="stylus">stylus</p>
         <p class="css">css</p>
     </div>
 </template>

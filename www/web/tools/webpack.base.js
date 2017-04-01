@@ -129,7 +129,9 @@ var baseConfig = {
             path.join(configWebpack.path.src, "css/sprites")
         ],
         extensions: [".js", ".jsx", ".css", ".less", ".png", ".jpg", ".jpeg", ".ico", ".handlebars", "swf"],
-        alias: {}
+        alias: {
+            'utils': path.join(configWebpack.path.src, '/js/common/utils'),
+        }
     },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
@@ -163,14 +165,6 @@ var baseConfig = {
         }),
     ],
     watch: isProduction ? false : true,
-    devServer: {
-        // contentBase: "../static",
-        // compress: true,
-        port: 9000,
-        proxy: {
-          "*": "http://127.0.0.1:8360",
-        }
-    },
     devtool: isProduction ? configWebpack.sourceMap.production : configWebpack.sourceMap.development
 };
 

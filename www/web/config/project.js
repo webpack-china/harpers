@@ -80,12 +80,6 @@ var config = {
             }
         },
 
-        // webpack resolve.alias 包别名
-        alias: {
-            'utils': path.join(srcPath, '/js/common/utils'),
-            'sutils': 'steamer-browserutils/index',
-        },
-
         // 文件名与哈希, hash, chunkhash, contenthash 与webpack的哈希配置对应
         hash: hash,
         chunkhash: chunkhash,

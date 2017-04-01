@@ -1,43 +1,4 @@
-# steamer-vue
-一个针对vue的脚手架
-
-[![NPM Version](https://img.shields.io/npm/v/steamer-vue.svg?style=flat)](https://www.npmjs.com/package/steamer-vue)
-[![Deps](https://david-dm.org/SteamerTeam/steamer-vue.svg)](https://david-dm.org/SteamerTeam/steamer-vue)
-
-## 使用
-
-```javascript
-// 安装依赖
-npm i
-
-// 开发
-npm start
-// 打开链接
-127.0.0.1:[端口号]/[config.route路径]/[html入口]
-例如： 127.0.0.1:9000/steamer-vue/index.html
-
-// 代码规范安装
-npm i -g eslint
-npm i -g stylelint
-// 代码规范扫描
-npm lint
-
-// 生产代码生成
-npm run dist
-
-```
-
-
-## 基本配置
-
-打开 config/project.js进行以下基本配置:
-
-```javascript
-* `config.webserver`  html的链接
-* `config.cdn`  cdn的链接
-* `config.port`  开发环境服务器端口
-* `config.route` 开发环境访问的路径
-```
+# 改造于 `steamer-vue`
 
 
 ## 详细文档
