@@ -2,10 +2,10 @@
 
 const utils = require('steamer-webpack-utils'),
 	  webpack = require('webpack'),
-	  fs = require('fs');
+	  fs = require('fs'),
+	  path = require('path');
 
 var argv = utils.getArgvs(),
-	npmArgv = utils.getArgvs(JSON.parse(process.env.npm_config_argv || "[]").original),
 	mode = argv.mode;
 
 var isProduction = mode === "production";
@@ -15,8 +15,11 @@ if (mode === 'development') {
 
 	require('./server');
 }
-else if (mode === 'production' || mode === 'source') {
-	process.env.NODE_ENV = isProduction ? "production" : "development";
+else if (mode === 'production') {
+	process.env.NODE_ENV = "production";
+
+	var config = require('../config/project'),
+    	configWebpack = config.webpack;
 
 	var compiler = webpack(require('./webpack.base'));
 	compiler.run(function(err, stats) {
@@ -39,6 +42,14 @@ else if (mode === 'production' || mode === 'source') {
 	            console.log('Webpack compiler encountered warnings.');
 	            console.log(jsonStats.warnings.join('\n'));
 	        }
+
+	        configWebpack.html.forEach((file) => {
+	        	let srcPath = path.join(__dirname, "../../static/", file.key + ".html"),
+	        		destPath = path.join(__dirname, "../../../view/home/", file.key + ".html"),
+	        		htmlContent = fs.readFileSync(srcPath, "utf-8");
+
+	        	fs.writeFileSync(destPath, htmlContent, "utf-8");
+	        });
 	    }
 	    else {
 	        console.log(err);
