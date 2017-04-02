@@ -5,6 +5,6 @@ const routers = [{
 }, {
     path: '*',
     component: resolve => require(['page/index_index/main.vue'], resolve)
-}]
+}];
 
-export default routers
+export default routers;
