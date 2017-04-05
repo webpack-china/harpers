@@ -14,7 +14,7 @@ mysql -u root -p
 create database harpers;
 
 // step3:
-exit
+exit;
 
 // step4:
 cd db
