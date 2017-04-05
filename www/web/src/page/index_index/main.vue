@@ -1,7 +1,7 @@
 <style lang="less" rel="stylesheet/less">
-    @import "../../css/common/common";
-    @import "../../css/common/reset";
-    @import "css/main";
+    // @import "../../css/common/common";
+    // @import "../../css/common/reset";
+    // @import "css/main";
 
     body {
         background-color: #2B3A42;
@@ -20,7 +20,7 @@
         <header class="top-nav-bar">
             <a href="/" class="wp-top-link-logo">webpack</a>
             <div class="top-nav-profile">
-                <router-link to="index">
+                <router-link to="home">
                     <img class="avatar" />
                 </router-link>
             </div>
@@ -30,7 +30,7 @@
                         <router-link to="index">首页</router-link>
                     </li>
                     <li class="wp-top-nav-li">
-                        <router-link to="index">论坛</router-link>
+                        <router-link to="detail">论坛</router-link>
                     </li>
                     <li class="wp-top-nav-li">
                         <router-link to="index">文档</router-link>
@@ -42,19 +42,16 @@
             </div>
         </header>
         <div class="container">
-            <section class="search-wrap"></section>
-            <section class="selection-wrap"></section>
+            <router-view></router-view>   
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-                name: 'Steamer Vue'
-            };
-        },
+
+        name: 'Main',
+
         created() {
             console.log('hello steamer-vue');
         }

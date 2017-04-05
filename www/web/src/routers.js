@@ -1,10 +1,12 @@
+import Detail from './components/detail/detail.vue';
+
 const routers = [{
     path: '/',
-    name: 'index',
-    component: resolve => require(['page/index_index/main.vue'], resolve)
+    name: 'Index',
+    component: Detail
 }, {
-    path: '*',
-    component: resolve => require(['page/index_index/main.vue'], resolve)
+    path: '/*',
+    name: 'Detail',
+    component: Detail
 }];
-
 export default routers;
