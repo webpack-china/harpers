@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express'),
 	app = express(),
 	path = require('path'),
@@ -34,7 +36,7 @@ app.use(function(req, res, next) {
 	}
 
 	var mfs = compiler.outputFileSystem;
-	
+
 	Object.keys(mfs.data).forEach((file) => {
 		if (!!~file.indexOf('html')) {
 			let bufferContent = mfs.data[file],
