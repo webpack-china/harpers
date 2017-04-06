@@ -33,30 +33,7 @@
 
 <template>
     <div>
-        <header class="top-nav-bar">
-            <a href="/" class="wp-top-link-logo">webpack</a>
-            <div class="top-nav-profile">
-                <router-link to="home">
-                    <img class="avatar" />
-                </router-link>
-            </div>
-            <div class="wp-top-nav">
-                <ul class="wp-top-nav-ul">
-                    <li class="wp-top-nav-li">
-                        <router-link to="index">首页</router-link>
-                    </li>
-                    <li class="wp-top-nav-li">
-                        <router-link to="detail">论坛</router-link>
-                    </li>
-                    <li class="wp-top-nav-li">
-                        <router-link to="index">文档</router-link>
-                    </li>
-                    <li class="wp-top-nav-li">
-                        <router-link to="index">帮助</router-link>
-                    </li>
-                </ul>
-            </div>
-        </header>
+        <headerNav></headerNav>
         <div class="container">
             <router-view></router-view>   
         </div>
@@ -64,12 +41,15 @@
 </template>
 
 <script>
+
+    import headerNav from 'components/header';
+
     export default {
-
         name: 'Main',
-
         created() {
             console.log('hello steamer-vue');
-        }
+        },
+        components: { headerNav }
     };
+    
 </script>
