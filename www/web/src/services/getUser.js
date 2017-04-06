@@ -6,9 +6,9 @@ const getUser = ()=>{
 
         }).then(()=>{
 
-        }).catch()=>{
-
-        }
+        }).catch(()=>{
+            
+        })
     })
 };
 
