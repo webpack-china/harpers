@@ -1,5 +1,5 @@
 <template>
-<div class="h-search">
+<div class="h-user-info">
     
 </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
 
-  name: 'Search',
+  name: 'UserInfo',
 
   data () {
     return {
