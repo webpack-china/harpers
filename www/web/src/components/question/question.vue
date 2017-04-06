@@ -3,12 +3,12 @@
    <div>
        <div class="h-q-data">
            <div>
-               <p></p>
-               <p></p>
+               <p>{{}}</p>
+               <p>浏览</p>
            </div>
            <div>
-               <p></p>
-               <p></p>
+               <p>{{}}</p>
+               <p>回答</p>
            </div>
        </div>
        <div>
@@ -25,7 +25,9 @@
 export default {
 
     name: 'Question',
+    props: {
 
+    },
     data () {
         return {
 
