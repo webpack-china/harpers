@@ -18,6 +18,17 @@ export default class extends think.logic.base {
   getAction() {
 
   }
+
+  /**
+   * @api {POST} /question/:question_id/against_count 反对问题
+   * @apiGroup  Question
+   * @apiVersion 0.0.1
+   */
+  /**
+   * @api {POST} /question/:question_id/agree_count 赞同问题
+   * @apiGroup  Question
+   * @apiVersion 0.0.1
+   */
   /**
    * @api {POST} /question 新增问题
    * @apiGroup Question
@@ -56,5 +67,19 @@ export default class extends think.logic.base {
   putAction() {
     this.postAction();
     this.rules.status = 'in:closed,hidden'
+  }
+
+  /**
+   * @api {POST} /question/:question_id/against_count 取消反对问题
+   * @apiGroup  Question
+   * @apiVersion 0.0.1
+   */  
+  /**
+   * @api {DELETE} /question/:question_id/agree_count 取消赞同问题
+   * @apiGroup  Question
+   * @apiVersion 0.0.1
+   */
+  deleteAction() {
+
   }
 }
