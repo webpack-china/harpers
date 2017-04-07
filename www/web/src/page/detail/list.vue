@@ -1,12 +1,21 @@
 <template>
-  <div class="h-search">{{name}}</div>
+  <div class="question-list">
+    <p>{{name}}</p>
+    <p>{{visitNum}}</p>
+  </div>
 </template>
+
+<style lang="less" scoped>
+  .question-list {
+    height: 134px;
+    border-bottom: 1px dashed #999;
+  }
+</style>
 
 <script>
     export default {
-
         name: 'list',
-        props: ['name'],
+        props: ['name', 'visitNum'],
 
         data () {
             return {
@@ -14,6 +23,3 @@
         }
     };
 </script>
-
-<style lang="css" scoped>
-</style>
