@@ -2,6 +2,10 @@
 logs
 *.log
 
+# Editor
+*.sublime-project
+*.sublime-workspace
+
 # Runtime data
 pids
 *.pid
@@ -37,3 +41,11 @@ runtime/
 .vscode
 .jshintignore
 .jshintrc
+
+.DS_Store
+
+# web starter kit
+.webpack_cache
+.happypack
+npm-debug.log
+*.log
