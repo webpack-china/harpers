@@ -22,7 +22,7 @@ mysql -uroot -p harpers < harpers_2017-02-09.sql
 
 ```
 
-3. Set github login auth key in `/src/common/config/db.js`.
+3. Set github login auth key in `/src/common/env/development.js`.
 
     Github redirect uri will like `xxx.com/api/user?_method=post&type=github`.
 
@@ -33,13 +33,19 @@ https://github.com/settings/applications/new
 // step2: 
 Application name: harpers
 Homepage URL: http://localhost
-Authorization callback URL: http://localhost/api/user?_method=post&type=github
+Authorization callback URL: http://local.webpack-china.org/api/user?_method=post&type=github
 
 // step3:
-fill Client ID and Client Secret in `/src/common/config/config.js`.
+fill Client ID and Client Secret and redirect_uri (Authorization callback URL) in `/src/common/env/development.js`.
+
+// step4: 
+use Charles or Nginx to set a proxy
+local.webpack-china.org 127.0.0.1:9000
 ```
 
-4. Run `npm start`, open `http://127.0.0.1:9000/`
+4. Run `npm start`, open `http://local.webpack-china.org/`
+
+5. Visit `http://local.webpack-china.org/api/user?_method=post&type=github` to login
 
 ## API Documentation
 

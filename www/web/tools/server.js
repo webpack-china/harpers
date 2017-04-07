@@ -63,7 +63,7 @@ app.use(webpackHotMiddleware(compiler, {
 app.use(configWebpack.route, proxy('http://127.0.0.1:' + configWebpack.port));
 // 后台转发
 // app.use('/api/', proxy('http://localhost:3001'));
-app.use("*", proxy("http://127.0.0.1:8360"));
+app.use("/", proxy("http://127.0.0.1:8360"));
 
 app.listen(configWebpack.port, function(err) {
 	if (err) {
