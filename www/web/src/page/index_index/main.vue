@@ -1,34 +1,30 @@
 <style lang="less" rel="stylesheet/less">
     // @import "../../css/common/common";
-    // @import "../../css/common/reset";
     // @import "css/main";
+
+    @import "../../css/common/normalize";
+    @import "../../css/common/reset";
+
+    html {
+        box-sizing: border-box;
+    }
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
 
     body {
         background-color: #2B3A42;
-        margin: 0;
-    }
-    a {
-        color: #fff;
-    }
-    ul, li{
-        margin: 0;
-        padding: 0;
-    }
-    li {
-        list-style: none;
     }
     .container {
-        font-size: 30px;
+        /*font-size: 30px;*/
         min-height: 320px;
+        background-color: #fff;
     }
     .clearfix:before,.clearfix:after{
         content:"";
         display:table;
     }
     .clearfix:after{clear:both;}
-    .clearfix{
-        *zoom:1;/*IE/7/6*/
-    }
 </style>
 
 <template>
