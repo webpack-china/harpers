@@ -49,7 +49,7 @@ local.webpack-china.org 127.0.0.1:9000
 
 ## API Documentation
 
-Open `xxx.com/doc/index.html`, like `127.0.0.1:8360/doc/index.html`
+Open `xxx.com/doc/index.html`, like `http://local.webpack-china.org/doc/index.html`
 
 ## Contribution
 
