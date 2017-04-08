@@ -12,7 +12,7 @@
                     <router-link to="index" class="wp-top-nav-link">首页</router-link>
                 </li>
                 <li class="wp-top-nav-li">
-                    <router-link to="detail" class="wp-top-nav-link">论坛</router-link>
+                    <router-link to="detail" class="wp-top-nav-link">问答</router-link>
                 </li>
                 <li class="wp-top-nav-li">
                     <router-link to="index" class="wp-top-nav-link">文档</router-link>

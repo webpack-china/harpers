@@ -63,6 +63,7 @@ export default {
             }
             p {
                 margin: 0;
+                white-space: nowrap;
             }
             .h-q-meta-scan {
                 .h-q-meta-num {
