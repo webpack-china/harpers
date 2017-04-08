@@ -2,6 +2,15 @@
 
 export default class extends think.controller.base {
   /**
-   * some base method in here
+   * before
    */
+  __before(){
+  }
+  /**
+   * call magic method
+   * @return {} []
+   */
+  __call(){
+    return this.display('index/index');
+  }
 }
