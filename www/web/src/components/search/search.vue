@@ -1,13 +1,13 @@
 <template>
 <div class="h-search">
-    
+ 
 </div>
 </template>
 
 <script>
 export default {
 
-  name: 'Search',
+name: 'Search',
 
   data () {
     return {
