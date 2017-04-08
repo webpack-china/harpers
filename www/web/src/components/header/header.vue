@@ -9,7 +9,7 @@
         <div class="wp-top-nav">
             <ul class="wp-top-nav-ul">
                 <li class="wp-top-nav-li">
-                    <router-link to="index" class="wp-top-nav-link">首页</router-link>
+                    <router-link to="index" class="wp-top-nav-link active">首页</router-link>
                 </li>
                 <li class="wp-top-nav-li">
                     <router-link to="detail" class="wp-top-nav-link">问答</router-link>
@@ -26,16 +26,12 @@
 </template>
 
 <script>
-export default {
-    name: 'Header',
-    data() {
-        return {
+    export default {
+        name: 'Header',
+        data() {
+            return {
 
-        };
-    }
-};
+            };
+        }
+    };
 </script>
-
-<style lang="less">
-    
-</style>

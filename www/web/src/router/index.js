@@ -6,7 +6,7 @@ import Detail from './detail.js';
 
 Vue.use(Router);
 
-// 同一路由
+// 路由总入口
 export default new Router({
     mode: 'history',
     routes: [
