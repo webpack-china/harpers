@@ -57,11 +57,51 @@
         }
         .h-nav-profile {
             float: right;
+            margin-right: 20px;
+            li {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            a {
+                color: #fff;
+            }
+            .msgs {
+                position: relative;
+            }
+            .msgs-count {
+                position: absolute;
+                top: -14px;
+                left: -6px;
+                display: block;
+                width: 16px;
+                height: 16px;
+                font-size: 12px;
+                background-color: #ff0000;
+                line-height: 16px;
+                text-align: center; 
+                border-radius: 50%;
+            }
+            .msgs-icon {
+                display: inline-block;
+                width: 27px;
+                height: 23px;
+                background-image: url('./images/msg.png');
+                background-size: 100%;
+            }
+            .add-question {
+                display: inline-block;
+                width: 80px;
+                height: 30px;
+                line-height: 30px;
+                background: #1d78c1;
+                border-radius: 4px;
+                text-align: center;
+            }
         }
         .nav-userinfo {
             display: table-cell;
             margin: 0 auto;
-            width: 70px;
+            width: 60px;
             height: 54px;
             text-align: center;
             vertical-align: middle;
@@ -73,6 +113,7 @@
                 vertical-align: middle;
             }
         }
+        
         .h-nav {
             margin-left: 20px;
         }
@@ -106,11 +147,22 @@
     <div>
         <header class="h-nav-bar clearfix">
             <a href="/" class="h-link-logo">webpack</a>
-            <div class="h-nav-profile">
-                <router-link to="home" class="nav-userinfo">
-                    <img class="avatar" />
-                </router-link>
-            </div>
+            <ul class="h-nav-profile">
+                <li>
+                    <a class="msgs" href="javascript:;">
+                        <span class="msgs-count">1</span>
+                        <i class="msgs-icon"></i>
+                    </a>
+                </li>
+                <li>
+                    <router-link to="User" class="nav-userinfo">
+                        <img class="avatar" />
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="question_new" class="add-question">提问</router-link>
+                </li>
+            </ul>
             <div class="h-nav">
                 <ul class="nav-ul">
                     <li class="nav-li">
