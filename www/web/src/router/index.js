@@ -9,7 +9,7 @@ Vue.use(Router);
 
 // 路由总入口
 export default new Router({
-    mode: 'history',
+    // mode: 'history',
     routes: [
         Home,
         User,

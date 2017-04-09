@@ -19,9 +19,9 @@ export default {
   },
   login: {
     github: {
-      client_id: '8ab7559db6dc0f628965',
-      client_secret: '9d05920df97b02e43af056e6fa27d00612c91b25',
-      redirect_uri: 'http://ming.li:8361/api/user?_method=post'
+      client_id: '59c521e73350de0bb59b',
+      client_secret: '816cecef4cb535f2bab57dd44397fd98388326d7',
+      redirect_uri: 'http://zd98.com:9000/api/user?_method=post&type=github'
     }
   }
-};
+};  

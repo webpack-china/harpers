@@ -15,7 +15,7 @@
                     <router-link to="detail" class="wp-top-nav-link">论坛</router-link>
                 </li>
                 <li class="wp-top-nav-li">
-                    <router-link to="user" class="wp-top-nav-link">文档</router-link>
+                    <router-link to="index" class="wp-top-nav-link">文档</router-link>
                 </li>
                 <li class="wp-top-nav-li">
                     <router-link to="index" class="wp-top-nav-link">帮助</router-link>
