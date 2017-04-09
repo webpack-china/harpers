@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Question from '../../components/question';
+import { Question } from 'Components';
 
 export default {
 
