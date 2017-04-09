@@ -20,6 +20,9 @@
                 <li class="wp-top-nav-li">
                     <router-link to="index" class="wp-top-nav-link">帮助</router-link>
                 </li>
+                <li class="wp-top-nav-li">
+                    <router-link to="/home/question/new" class="wp-top-nav-link">提问</router-link>
+                </li>
             </ul>
         </div>
     </header>
@@ -37,5 +40,5 @@ export default {
 </script>
 
 <style lang="less">
-    
+
 </style>

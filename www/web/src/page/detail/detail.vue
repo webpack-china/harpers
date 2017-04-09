@@ -7,7 +7,7 @@
       <ul class="navbar clearfix">
         <li class="navbar-li" :class="title.isActive ? 'active' : ''" v-for="(title, index) in titles" v-text="title.name" @click="switchContent(titles, title)"></li>
       </ul>
-      <list v-for="item in items" :name="item.name" :visitNum="item.visitNum" :key="item.key"></list>
+      <list :qt="item" v-for="item in items" :name="item.name" :visitNum="item.visitNum" :key="item.key"></list>
     </div>
   </div>
 </template>
@@ -36,7 +36,9 @@
   }
 
   .list-container {
+    overflow: hidden;
     padding-left: 20px;
+    padding-bottom: 20px;
     width: 700px;
   }
 
@@ -57,29 +59,19 @@
       color: #333;
     }
   }
+
+  .h-question {
+    padding: 20px 0;
+    border-bottom: 1px dashed #999;
+  }
 </style>
 
 
 <script>
 
-    /* import axios from 'axios';
+    import axios from 'axios';
 
-    const getUser = ()=>{
-        return new Promise((resolve, reject)=>{
-            axios.get('/user', {
-
-            }).then(()=>{
-
-            }).catch()=>{
-
-            }
-        })
-    };
-
-    export default getUser; */
-
-
-    import List from './list';
+    import List from '../../components/question';
 
     var keys = [{
         name: 'ALL'
@@ -97,7 +89,7 @@
     var titles = [{
         name: '最新动态'
     }, {
-        name: '新问答'
+        name: '最新问答'
     }, {
         name: '热门问答'
     }, {
@@ -106,6 +98,20 @@
     titles.forEach(function (item, index) {
         item.isActive = index === 0;
     });
+
+
+    const initGetQuestion = () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/api/question', {}).then((result) => {
+                result = result.data;
+                if (result.errno) {
+                    reject(result.error);
+                } else {
+                    resolve(result.data);
+                }
+            }).catch(() => {});
+        });
+    };
 
     export default {
 
@@ -128,21 +134,18 @@
             return {
                 keys,
                 titles,
-
-                items: [{
-                    key: 100,
-                    name: '请教下一个CSS下拉菜单实现效果',
-                    visitNum: 100
-                }, {
-                    key: 200,
-                    name: '请教下一个CSS下拉菜单实现效果',
-                    visitNum: 320
-                }, {
-                    key: 300,
-                    name: '请教下一个CSS下拉菜单实现效果',
-                    visitNum: 1031
-                }]
+                items: []
             };
+        },
+
+        created: function () {
+            // 初始化渲染
+            initGetQuestion().then((result) => {
+                console.log(result);
+                this.items = result;
+            }, function (error) {
+                throw new Error(error);
+            });
         }
     };
 
