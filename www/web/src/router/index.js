@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './home.js';
 import User from './user.js';
 import Detail from './detail.js';
+import Question from './question';
 
 Vue.use(Router);
 
@@ -12,6 +13,7 @@ export default new Router({
     routes: [
         Home,
         User,
-        Detail
+        Detail,
+        ...Question
     ]
 });
