@@ -5,12 +5,12 @@
                 <img src="./images/logo.png" alt="logo">
             </div>
             <div class="search-box">
-                <input name="search" type="text" placeholder="你想知道的，从这里开始" class="search-input" />
+                <input name="search" type="text" placeholder="你想知道的，从这里开始" class="form-control search-input" />
                 <a href="javascript:;" class="search-btn"></a>
             </div>
         </section>
         <section class="selection-section">
-            <h1 class="selection-header">精选问题</h1>
+            <h1 class="selection-header">精选问答</h1>
             <div class="selection-content">
                 <div class="selection-item"></div>
                 <div class="selection-item"></div>
@@ -53,14 +53,12 @@
         }
         .search-input {
             display: block;
-            padding: 7px 10px;
             padding-right: 140px;
             width: 100%;
             color: #fff;
             background:#465e69;
             font-size: 24px;
             border: 0;
-            border-radius: 2px;
             transition: border-color .3s ease;
         }
         .search-btn {
