@@ -172,7 +172,7 @@
                         <router-link to="detail" class="nav-link">问答</router-link>
                     </li>
                     <li class="nav-li">
-                        <router-link to="/user" class="nav-link">文档</router-link>
+                        <router-link to="/" class="nav-link">文档</router-link>
                     </li>
                     <li class="nav-li">
                         <router-link to="/" class="nav-link">帮助</router-link>

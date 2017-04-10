@@ -9,6 +9,7 @@ Vue.use(Router);
 
 // 路由总入口
 export default new Router({
+    // development 注释掉，product取消注释
     // mode: 'history',
     routes: [
         Home,
