@@ -1,6 +1,6 @@
 <template>
-<div class="h-user">
-   <div class="h-user-wrap">
+<div class="h-user-info">
+   <div class="h-user-info-wrap">
    		<div class="h-user-head"></div>
    		<div class="h-user-content">
    			<div class="h-user-self">
@@ -45,8 +45,8 @@ export default {
 </script>
 
 <style lang="less">
-.h-user {
-    .h-user-wrap {
+.h-user-info {
+    .h-user-info-wrap {
         padding: 20px 0;
         display: flex;
         .h-user-head {
