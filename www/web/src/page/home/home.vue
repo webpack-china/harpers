@@ -30,6 +30,14 @@
 
             };
         },
+        mounted () {
+            this.init();
+        },
+        methods: {
+            init: function () {
+                console.dir('首页数据初始化');
+            }
+        },
         components: { Question }
     };
 </script>
@@ -67,8 +75,7 @@
         .search-btn {
             position: absolute;
             right: 15px;
-            top: 6px;
-            bottom: 3px;
+            bottom: 9px;
             margin-bottom: 0;
             display: inline-block;
             height: 30px;
