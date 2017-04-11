@@ -12,22 +12,25 @@
         <section class="selection-section">
             <h1 class="selection-header">精选问答</h1>
             <div class="selection-content">
-                <div class="selection-item"></div>
-                <div class="selection-item"></div>
-                <div class="selection-item"></div>
+                <div class="selection-item" v-for="i in 4">
+                    <Question :qt="{}"></Question>
+                </div>
             </div>
         </section>
     </div>
 </template>
 
 <script>
+    import { Question } from 'Components';
+
     export default {
         name: 'home',
         data () {
             return {
 
             };
-        }
+        },
+        components: { Question }
     };
 </script>
 
@@ -64,7 +67,7 @@
         .search-btn {
             position: absolute;
             right: 15px;
-            top: 10px;
+            top: 6px;
             bottom: 3px;
             margin-bottom: 0;
             display: inline-block;
@@ -85,12 +88,15 @@
         }
         .selection-item {
             margin: auto;
+            padding: 20px;
             margin-bottom: 20px;
             background-color: #fff;
             width: 70%;
-            height: 117px;
             box-shadow:0 2px 4px 0 rgba(0,0,0,0.50);
             border-radius:6px;
+            .h-q-wrap {
+                max-width: 100%;
+            }
         }
     }
 </style>
