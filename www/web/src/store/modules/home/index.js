@@ -6,7 +6,7 @@
 * @introduction 首页store
 */
 
-import { getUser } from 'services';
+import service from 'services';
 
 const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
 
@@ -22,7 +22,7 @@ const getters = {
 const actions = {
     fetchList ({ commit, state }, params) {
         // test
-        getUser().then(function (response) {
+        service.getUser().then(function (response) {
             commit(FETCH_LIST_SUCCESS, {
                 data: response.data
             });
