@@ -48,7 +48,7 @@ var baseConfig = {
                 },
                 exclude: /node_modules/
             },
-            { 
+            {
                 test: /\.js$/,
                 loader: 'happypack/loader?id=1',
                 exclude: /node_modules/,
@@ -57,7 +57,7 @@ var baseConfig = {
                 test: /\.css$/,
                 // 单独抽出样式文件
                 loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader', 
+                    fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader',
@@ -75,7 +75,7 @@ var baseConfig = {
             {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader', 
+                    fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader',
@@ -102,8 +102,8 @@ var baseConfig = {
                 loader: 'html-loader'
             },
             {
-                test: /\.handlebars$/, 
-                loader: "handlebars-loader" 
+                test: /\.handlebars$/,
+                loader: "handlebars-loader"
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -132,6 +132,7 @@ var baseConfig = {
         alias: {
             'utils': path.join(configWebpack.path.src, '/js/common/utils'),
             'Components': path.resolve(__dirname, '../src/components/index.js'),
+            'services': path.resolve(__dirname, '../src/services/index.js')
         }
     },
     plugins: [
@@ -175,8 +176,8 @@ if (isProduction) {
 
     if (configWebpack.compress) {
         baseConfig.plugins.push(new UglifyJsParallelPlugin({
-            workers: os.cpus().length, // usually having as many workers as cpu cores gives good results 
-            // other uglify options 
+            workers: os.cpus().length, // usually having as many workers as cpu cores gives good results
+            // other uglify options
             compress: {
                 warnings: false,
             },
@@ -206,7 +207,7 @@ configWebpack.html.forEach(function(page, key) {
             return tpl;
         }
     }));
-}); 
+});
 
 configWebpack.static.forEach((item) => {
     baseConfig.plugins.push(new CopyWebpackPlugin([{

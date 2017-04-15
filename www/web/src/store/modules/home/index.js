@@ -6,10 +6,13 @@
 * @introduction 首页store
 */
 
-const GET_SELECTED_QUESTIONS = 'GET_SELECTED_QUESTIONS';
+import { getUser } from 'services';
+
+const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
 
 const state = {
-
+    isFetching: false,
+    quesions: []
 };
 
 const getters = {
@@ -17,12 +20,23 @@ const getters = {
 };
 
 const actions = {
-
+    fetchList ({ commit, state }, params) {
+        // test
+        getUser().then(function (response) {
+            commit(FETCH_LIST_SUCCESS, {
+                data: response.data
+            });
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
 };
 
 const mutations = {
-    [GET_SELECTED_QUESTIONS] (state) {
-
+    [FETCH_LIST_SUCCESS] (state, action) {
+        state.isFetching = false;
+        state.quesions = action.data;
     }
 };
 

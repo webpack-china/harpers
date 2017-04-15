@@ -12,4 +12,3 @@ export default new Vuex.Store({
         Home
     }
 });
-

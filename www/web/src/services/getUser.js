@@ -4,10 +4,10 @@ const getUser = () => {
     return new Promise((resolve, reject) => {
         axios.get('/user', {
 
-        }).then(() => {
-
-        }).catch(() => {
-
+        }).then((response) => {
+            resolve(response);
+        }).catch((error) => {
+            reject(error);
         });
     });
 };

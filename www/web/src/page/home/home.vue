@@ -21,6 +21,7 @@
 </template>
 
 <script>
+    import { mapState, mapActions } from 'vuex';
     import { Question } from 'Components';
 
     export default {
@@ -32,11 +33,20 @@
         },
         mounted () {
             this.init();
+            this.fetchList();
         },
         methods: {
+            ...mapActions([
+                'fetchList'
+            ]),
             init: function () {
                 console.dir('首页数据初始化');
             }
+        },
+        computed: {
+            ...mapState({
+                quesions: state => state.Home.quesions
+            })
         },
         components: { Question }
     };
@@ -63,7 +73,6 @@
             border-radius: 30px;
         }
         .search-input {
-            display: block;
             padding-right: 140px;
             width: 100%;
             color: #fff;
@@ -75,9 +84,7 @@
         .search-btn {
             position: absolute;
             right: 15px;
-            bottom: 9px;
-            margin-bottom: 0;
-            display: inline-block;
+            top: 6px;
             height: 30px;
             width: 30px;
             background-image: url('./images/search.png');
