@@ -22,8 +22,8 @@
         content: "";
         display: table;
     }
-    .clearfix:after { 
-        clear: both; 
+    .clearfix:after {
+        clear: both;
     }
     .form-control {
         padding: 6px 8px;
@@ -78,7 +78,7 @@
                 font-size: 12px;
                 background-color: #ff0000;
                 line-height: 16px;
-                text-align: center; 
+                text-align: center;
                 border-radius: 50%;
             }
             .msgs-icon {
@@ -113,7 +113,7 @@
                 vertical-align: middle;
             }
         }
-        
+
         .h-nav {
             margin-left: 20px;
         }
@@ -160,7 +160,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="question_new" class="add-question">提问</router-link>
+                    <router-link to="/home/question/new" class="add-question">提问</router-link>
                 </li>
             </ul>
             <div class="h-nav">
@@ -182,7 +182,7 @@
             <search></search>
         </header>
         <div class="container">
-            <router-view></router-view>   
+            <router-view></router-view>
         </div>
     </div>
 </template>
@@ -197,5 +197,5 @@
         },
         components: { search }
     };
-    
+
 </script>

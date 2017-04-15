@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const getUser = ()=>{
-    return new Promise((resolve, reject)=>{
+const getUser = () => {
+    return new Promise((resolve, reject) => {
         axios.get('/user', {
 
-        }).then(()=>{
+        }).then(() => {
 
-        }).catch(()=>{
-        	
+        }).catch(() => {
+
         });
-    })
+    });
 };
 
 export default getUser;

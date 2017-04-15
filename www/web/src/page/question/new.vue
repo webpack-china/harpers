@@ -20,6 +20,7 @@
 
 <script>
 import markdown from '../../components/markdown';
+import service from '../../services';
 export default {
     name: 'question_new',
 
@@ -32,10 +33,16 @@ export default {
             this.mdData = res;
         },
         publish() {
-            let title = this.title;
-            let mdValue = this.mdData.mdValue;
-            let htmlValue = this.mdData.htmlValue;
-            console.log({ title, mdValue, htmlValue });
+            if (!this.title) {
+                alert('标题不能为空');
+            }
+            service.addQuestion(this.title, this.mdData.mdValue, '1,2,3').then(r => {
+                if (r.errno !== 0) {
+                    console.log(r);
+                } else {
+                    alert('提交成功');
+                }
+            });
         }
     },
 
