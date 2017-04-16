@@ -20,7 +20,8 @@
 
 <script>
 import markdown from '../../components/markdown';
-import service from '../../services';
+import { qustionService } from 'services';
+
 export default {
     name: 'question_new',
 
@@ -36,7 +37,11 @@ export default {
             if (!this.title) {
                 alert('标题不能为空');
             }
-            service.addQuestion(this.title, this.mdData.mdValue, '1,2,3').then(r => {
+            qustionService.addQuestion({
+                title: this.title,
+                tag: '1,2,3',
+                markdown_content: this.mdData.mdValue
+            }).then(r => {
                 if (r.errno !== 0) {
                     console.log(r);
                 } else {

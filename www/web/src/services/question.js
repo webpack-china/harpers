@@ -1,48 +1,32 @@
 /*
 * @Author: lizhonghui
 * @Date:   2017-04-15 13:27:25
-* @Last Modified by:   lizhonghui
-* @Last Modified time: 2017-04-15 15:27:29
+* @Last Modified by:   leo
+* @Last Modified time: 2017-04-16 13:00:00
 */
 
 'use strict';
 
-import axios from 'axios';
+import xhr from './xhr';
 
-let instance = axios.create({
-    baseURL: '/api',
-    timeout: 10000,
-});
-
-function commonHandler(res) {
-    if (res.status === 200) {
-        return res.data;
-    } else {
-        return {
-            errno: -1,
-            errmsg: '接口返回有误，请重试'
-        };
+/**
+ * 提问页所用到的http service
+ */
+class QustionService {
+    /**
+     * 提交问答
+     * @return {Promise}
+     */
+    addQuestion (params) {
+        return xhr({
+            method: 'post',
+            url: '/question',
+            params: params
+        });
     }
 }
 
-function commonErrorHandler(err) {
-    if (err.response) {
-        return err.response.data;
-    } else {
-        return {
-            errno: -1,
-            errmsg: '接口请求失败，请重试'
-        };
-    }
-}
+// 实例化后导出，全局单例
+export default new QustionService();
 
-export function addQuestion(title, mdContent, tag) {
-    return instance.post('/question', {
-        title,
-        tag,
-        markdown_content: mdContent
-    })
-    .then(commonHandler)
-    .catch(commonErrorHandler);
-}
 

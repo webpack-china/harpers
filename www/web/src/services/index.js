@@ -1,7 +1,8 @@
 // ajax service封装
-import getUser from './getUser.js';
-import { addQuestion } from './question.js';
+import homeService from './home';
+import qustionService from './question';
 
-export default {
-    getUser, addQuestion
+export {
+    homeService,
+    qustionService
 };

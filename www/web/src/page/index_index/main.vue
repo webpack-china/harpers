@@ -1,3 +1,60 @@
+<template>
+    <div>
+        <header class="h-nav-bar clearfix">
+            <a href="/" class="h-link-logo">webpack</a>
+            <ul class="h-nav-profile">
+                <li>
+                    <a class="msgs" href="javascript:;">
+                        <span class="msgs-count">1</span>
+                        <i class="msgs-icon"></i>
+                    </a>
+                </li>
+                <li>
+                    <router-link to="User" class="nav-userinfo">
+                        <img class="avatar" />
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/home/question/new" class="add-question">提问</router-link>
+                </li>
+            </ul>
+            <div class="h-nav">
+                <ul class="nav-ul">
+                    <li class="nav-li">
+                        <router-link to="/" class="nav-link active">首页</router-link>
+                    </li>
+                    <li class="nav-li">
+                        <router-link to="detail" class="nav-link">问答</router-link>
+                    </li>
+                    <li class="nav-li">
+                        <a href="https://doc.webpack-china.org" class="nav-link" target="blank">文档</a>
+                    </li>
+                    <li class="nav-li">
+                        <router-link to="/" class="nav-link">帮助</router-link>
+                    </li>
+                </ul>
+            </div>
+            <search></search>
+        </header>
+        <div class="container">
+            <router-view></router-view>
+        </div>
+    </div>
+</template>
+
+<script>
+    import search from 'components/search';
+
+    export default {
+        name: 'Main',
+        created() {
+            console.log('hello steamer-vue');
+        },
+        components: { search }
+    };
+
+</script>
+
 <style lang="less" rel="stylesheet/less">
     @import "../../css/common/normalize";
     @import "../../css/common/reset";
@@ -142,60 +199,3 @@
     }
     /*********** 顶部导航栏end **********/
 </style>
-
-<template>
-    <div>
-        <header class="h-nav-bar clearfix">
-            <a href="/" class="h-link-logo">webpack</a>
-            <ul class="h-nav-profile">
-                <li>
-                    <a class="msgs" href="javascript:;">
-                        <span class="msgs-count">1</span>
-                        <i class="msgs-icon"></i>
-                    </a>
-                </li>
-                <li>
-                    <router-link to="User" class="nav-userinfo">
-                        <img class="avatar" />
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="/home/question/new" class="add-question">提问</router-link>
-                </li>
-            </ul>
-            <div class="h-nav">
-                <ul class="nav-ul">
-                    <li class="nav-li">
-                        <router-link to="/" class="nav-link active">首页</router-link>
-                    </li>
-                    <li class="nav-li">
-                        <router-link to="detail" class="nav-link">问答</router-link>
-                    </li>
-                    <li class="nav-li">
-                        <router-link to="/" class="nav-link">文档</router-link>
-                    </li>
-                    <li class="nav-li">
-                        <router-link to="/" class="nav-link">帮助</router-link>
-                    </li>
-                </ul>
-            </div>
-            <search></search>
-        </header>
-        <div class="container">
-            <router-view></router-view>
-        </div>
-    </div>
-</template>
-
-<script>
-    import search from 'components/search';
-
-    export default {
-        name: 'Main',
-        created() {
-            console.log('hello steamer-vue');
-        },
-        components: { search }
-    };
-
-</script>
