@@ -5,7 +5,7 @@
                 <img src="./images/logo.png" alt="logo">
             </div>
             <div class="search-box">
-                <input name="search" type="text" placeholder="你想知道的，从这里开始" class="form-control search-input" />
+                <Search :placeholder="'你想知道的，从这里开始'"></Search>
                 <a href="javascript:;" class="search-btn"></a>
             </div>
         </section>
@@ -22,7 +22,7 @@
 
 <script>
     import { mapState, mapActions } from 'vuex';
-    import { Question } from 'Components';
+    import { Question, Search } from 'Components';
 
     export default {
         name: 'home',
@@ -48,7 +48,7 @@
                 quesions: state => state.Home.quesions
             })
         },
-        components: { Question }
+        components: { Question, Search }
     };
 </script>
 
@@ -74,7 +74,8 @@
         }
         .search-input {
             padding-right: 140px;
-            width: 100%;
+            width: 100% !important;
+            height: initial !important;
             color: #fff;
             background:#465e69;
             font-size: 24px;
@@ -111,6 +112,10 @@
             .h-q-wrap {
                 max-width: 100%;
             }
+        }
+        .h-search {
+            display: block;
+            height: initial;
         }
     }
 </style>

@@ -34,7 +34,7 @@
                     </li>
                 </ul>
             </div>
-            <search></search>
+            <Search :placeholder="'输入关键词搜索'"s></Search>
         </header>
         <div class="container">
             <router-view></router-view>
@@ -43,14 +43,14 @@
 </template>
 
 <script>
-    import search from 'components/search';
+    import { Search } from 'Components';
 
     export default {
         name: 'Main',
         created() {
             console.log('hello steamer-vue');
         },
-        components: { search }
+        components: { Search }
     };
 
 </script>
