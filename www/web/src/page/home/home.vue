@@ -12,7 +12,7 @@
         <section class="selection-section">
             <h1 class="selection-header">精选问答</h1>
             <div class="selection-content">
-                <div class="selection-item" v-for="i in 4">
+                <div class="selection-item" v-for="item in 4">
                     <Question :qt="{}"></Question>
                 </div>
             </div>

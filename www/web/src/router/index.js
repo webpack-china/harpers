@@ -4,6 +4,7 @@ import Home from './home.js';
 import User from './user.js';
 import Detail from './detail.js';
 import Question from './question';
+import Search from './search';
 
 Vue.use(Router);
 
@@ -15,6 +16,7 @@ export default new Router({
         Home,
         User,
         Detail,
-        ...Question
+        ...Question,
+        Search
     ]
 });
