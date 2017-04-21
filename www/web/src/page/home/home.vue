@@ -12,7 +12,7 @@
         <section class="selection-section">
             <h1 class="selection-header">精选问答</h1>
             <div class="selection-content">
-                <div class="selection-item" v-for="item in 4">
+                <div class="selection-item" v-for="item in sliceQuesions">
                     <Question :qt="{}"></Question>
                 </div>
             </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex';
+    import { mapState, mapActions, mapGetters } from 'vuex';
     import { Question, Search } from 'Components';
 
     export default {
@@ -46,7 +46,10 @@
         computed: {
             ...mapState({
                 quesions: state => state.Home.quesions
-            })
+            }),
+            ...mapGetters([
+                'sliceQuesions'
+            ])
         },
         components: { Question, Search }
     };
