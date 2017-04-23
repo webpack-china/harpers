@@ -5,14 +5,14 @@
                 <img src="./images/logo.png" alt="logo">
             </div>
             <div class="search-box">
-                <input name="search" type="text" placeholder="你想知道的，从这里开始" class="form-control search-input" />
+                <Search :placeholder="'你想知道的，从这里开始'"></Search>
                 <a href="javascript:;" class="search-btn"></a>
             </div>
         </section>
         <section class="selection-section">
             <h1 class="selection-header">精选问答</h1>
             <div class="selection-content">
-                <div class="selection-item" v-for="i in 4">
+                <div class="selection-item" v-for="item in sliceQuesions">
                     <Question :qt="{}"></Question>
                 </div>
             </div>
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex';
-    import { Question } from 'Components';
+    import { mapState, mapActions, mapGetters } from 'vuex';
+    import { Question, Search } from 'Components';
 
     export default {
         name: 'home',
@@ -46,9 +46,12 @@
         computed: {
             ...mapState({
                 quesions: state => state.Home.quesions
-            })
+            }),
+            ...mapGetters([
+                'sliceQuesions'
+            ])
         },
-        components: { Question }
+        components: { Question, Search }
     };
 </script>
 
@@ -74,7 +77,8 @@
         }
         .search-input {
             padding-right: 140px;
-            width: 100%;
+            width: 100% !important;
+            height: initial !important;
             color: #fff;
             background:#465e69;
             font-size: 24px;
@@ -111,6 +115,10 @@
             .h-q-wrap {
                 max-width: 100%;
             }
+        }
+        .h-search {
+            display: block;
+            height: initial;
         }
     }
 </style>

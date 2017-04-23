@@ -16,7 +16,9 @@ const state = {
 };
 
 const getters = {
-
+    sliceQuesions: state => {
+        return state.quesions.slice(0, 5);
+    }
 };
 
 const actions = {
@@ -32,7 +34,8 @@ const actions = {
 const mutations = {
     [FETCH_LIST_SUCCESS] (state, action) {
         state.isFetching = false;
-        state.quesions = action.data;
+        // state.quesions = action.data;
+        state.quesions = [{}, {}, {}, {}, {}, {}, {}, {}];
     }
 };
 
