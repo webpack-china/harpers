@@ -15,6 +15,7 @@
                 <div class="selection-item" v-for="item in sliceQuesions">
                     <Question :qt="{}"></Question>
                 </div>
+                <router-link to="detail" class="more-qustions">更多问答</router-link>
             </div>
         </section>
     </div>
@@ -88,7 +89,7 @@
         .search-btn {
             position: absolute;
             right: 15px;
-            top: 6px;
+            top: 0.6rem;
             height: 30px;
             width: 30px;
             background-image: url('./images/search.png');
@@ -114,6 +115,21 @@
             border-radius:6px;
             .h-q-wrap {
                 max-width: 100%;
+            }
+        }
+        .more-qustions {
+            display: block;
+            margin: 35px auto 35px;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            color: #000;
+            background-color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            &:hover {
+                text-decoration: underline;
             }
         }
         .h-search {

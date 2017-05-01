@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="h-nav-bar clearfix">
-            <a href="/" class="h-link-logo">webpack</a>
+            <router-link to="/" class="h-link-logo">webpack</router-link>
             <ul class="h-nav-profile">
                 <li>
                     <a class="msgs" href="javascript:;">
@@ -15,7 +15,10 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/home/question/new" class="add-question">提问</router-link>
+                    <i class="login-icon"></i>
+                </li>
+                <li>
+                    <a javascript=":;" class="add-question" @click="login">提问</a>
                 </li>
             </ul>
             <div class="h-nav">
@@ -39,6 +42,16 @@
         <div class="container">
             <router-view></router-view>
         </div>
+        <div id="dialog" class="dialog" v-bind:class="{ open: isOpen }">
+            <div class="dialog-overlay"></div>
+            <div class="dialog-content">
+                <i class="dialog-close" @click="close">×</i>
+                <h2>快速登录</h2>
+                <a href="javascript:;" class="redirect" @click="redirectLogin">
+                    <i></i>
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -47,8 +60,24 @@
 
     export default {
         name: 'Main',
+        data () {
+            return {
+                isOpen: false
+            };
+        },
         created() {
             console.log('hello steamer-vue');
+        },
+        methods: {
+            login () {
+                this.isOpen = true;
+            },
+            redirectLogin () {
+                window.location.href = 'http://local.webpack-china.org/api/user?_method=post&type=github';
+            },
+            close () {
+                this.isOpen = false;
+            }
         },
         components: { Search }
     };
@@ -66,7 +95,9 @@
     *, *:before, *:after {
         box-sizing: inherit;
     }
-
+    a {
+        cursor: pointer;
+    }
     body {
         background-color: #2B3A42;
     }
@@ -198,4 +229,82 @@
         }
     }
     /*********** 顶部导航栏end **********/
+
+    /*********** 登录弹窗start **********/
+    .dialog, .dialog-overlay {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    .dialog {
+        position: fixed;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+    .dialog-overlay {
+        position: absolute;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.8);
+        opacity: 0;
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+        -webkit-backface-visibility: hidden;
+        -webkit-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+    }
+    .dialog-content {
+        width: 360px;
+        width: 280px;
+        background: #fff;
+        padding: 1em;
+        text-align: center;
+        position: relative;
+        z-index: 5;
+        opacity: 0;
+        border-radius: 4px;
+        .redirect {
+            display: block;
+            margin: 25px auto 10px;
+            background-color: #ccc;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    }
+    .dialog-close {
+        position: absolute;
+        top: 3px;
+        right: 5px;
+        cursor: pointer;
+    }
+    .dialog.open .dialog-content {
+        -webkit-animation-duration: 0.4s;
+        animation-duration: 0.4s;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+        -webkit-animation-name: anim-open;
+        animation-name: anim-open;
+        -webkit-animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+        animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+        pointer-events: auto;
+    }
+    .dialog.open .dialog-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    @-webkit-keyframes anim-open {
+        0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); }
+        100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); }
+    }
+    @keyframes anim-open {
+        0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); transform: scale3d(0, 0, 1); }
+        100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+    }
+    /*********** 登录弹窗end **********/
 </style>
