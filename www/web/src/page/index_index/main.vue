@@ -299,11 +299,12 @@
         pointer-events: auto;
     }
     @-webkit-keyframes anim-open {
-        0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); }
+        0% { opacity: 0; -webkit-transform: scale3d(1.1, 1.1, 1); }
         100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); }
     }
+
     @keyframes anim-open {
-        0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); transform: scale3d(0, 0, 1); }
+        0% { opacity: 0; -webkit-transform: scale3d(1.1, 1.1, 1); transform: scale3d(1.1, 1.1, 1); }
         100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
     }
     /*********** 登录弹窗end **********/
