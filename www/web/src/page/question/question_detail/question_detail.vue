@@ -1,5 +1,5 @@
 <template>
-<div class="question-detail">
+<div class="question-detail question-summary">
 
     <Tags :tags="tags"></Tags>
     <div class="h-q-content">
@@ -8,7 +8,7 @@
         <span class="btn btn-text" v-if="true">{{btnText}}</span>
         </p>
     </div>
-    <div class="btn">写回答</div>
+    <button class="btn-write">写回答</button>
 
 </div> 
 </template>
@@ -37,17 +37,48 @@ export default {
 </script>
 
 <style lang="less">
+.question-detail {
+    position: relative;
+    padding: 30px 0;
+    box-shadow: 0px 0px 4px 1px #ddd;
+    &.question-summary {
+        padding: 10px 0;
+        .h-tags{display: none;}
+        .h-q-content-title {margin-bottom: 0;}
+        .h-q-content-detail {display: none;}
+        .btn-write{
+            bottom: 6px;
+        }
+    }
+}
+.h-tags {
+    margin-bottom: 12px;
+}
 .h-q-content {
+    max-width: 700px;
     font-size: 14px;
     color: #333;
     &-title {
         font-size: 24px;
+        margin-bottom: 20px;
     }
     &-detail {
-
     }
 }
 .btn-text {
     display: inline-block;
+    cursor: pointer;
+}
+.btn-write {
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    border: 0;
+    font-size: 18px;
+    color: #fff;
+    background:#1d78c1;
+    border-radius:4px;
+    width:90px;
+    height:36px;
 }
 </style>
