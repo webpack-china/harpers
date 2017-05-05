@@ -8,4 +8,4 @@
 'use strict';
 
 export * as QuestionNew from './new.vue';
-export * as QuestionDetail from './detail.vue';
+export * as QuestionDetail from './detail/detail.vue';

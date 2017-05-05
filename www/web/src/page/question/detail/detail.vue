@@ -1,6 +1,8 @@
 <template>
     <div>
         <QuestionDetail></QuestionDetail>
+        <QAList></QAList>
+        <MarkDown></MarkDown>
     </div>
 </template>
 
@@ -9,14 +11,14 @@
 </style>
 
 <script>
-import QuestionDetail from './question_detail';
-import QuestionAnswer from './question_answer';
-import MarkDown from 'Components';
-
+import QuestionDetail from './question_detail.vue';
+import QAList from './list.vue';
+import { MarkDown } from 'Components';
+console.log(MarkDown);
 export default {
     components: {
         QuestionDetail,
-        QuestionAnswer,
+        QAList,
         MarkDown
     }
 };

@@ -11,7 +11,6 @@ import {
     QuestionNew,
     QuestionDetail
 } from '../page/question';
-
 // 嵌套路由等配置
 export default [
     {
