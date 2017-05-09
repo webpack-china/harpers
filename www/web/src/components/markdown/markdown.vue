@@ -80,7 +80,7 @@
             return {
                 input: this.mdValuesP || '',
                 editStatus: this.editStatusP || true,
-                previewStatus: this.previewStatusP || true,
+                previewStatus: this.previewStatusP == undefined ? true: this.previewStatusP,
                 fullPageStatus: this.fullPageStatusP || false,
                 navStatus: this.navStatusP || true,
                 icoStatus: this.icoStatusP || true,

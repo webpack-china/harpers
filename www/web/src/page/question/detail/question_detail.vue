@@ -1,5 +1,5 @@
 <template>
-<div class="question-detail question-summary">
+<div class="question-detail">
 
     <Tags :tags="tags"></Tags>
     <div class="h-q-content">
@@ -39,7 +39,7 @@ export default {
 <style lang="less">
 .question-detail {
     position: relative;
-    padding: 30px 0;
+    padding: 30px 20px;
     box-shadow: 0px 0px 4px 1px #ddd;
     &.question-summary {
         padding: 10px 0;
@@ -68,6 +68,7 @@ export default {
 .btn-text {
     display: inline-block;
     cursor: pointer;
+    color: #999;
 }
 .btn-write {
     position: absolute;
