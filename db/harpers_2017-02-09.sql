@@ -120,9 +120,9 @@ DROP TABLE IF EXISTS `harp_options`;
 
 CREATE TABLE `harp_options` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `hkey` int(11) NOT NULL COMMENT '配置名称',
-  `hvalue` int(11) NOT NULL COMMENT '配置值',
-  `hdesc` int(11) DEFAULT NULL COMMENT '配置描述',
+  `hkey` varchar(255) NOT NULL COMMENT '配置名称',
+  `hvalue` varchar(255) NOT NULL COMMENT '配置值',
+  `hdesc` varchar(255) DEFAULT NULL COMMENT '配置描述',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

@@ -7,6 +7,7 @@
 export default class extends think.logic.base {
   /**
    * @api {GET} /question 获取问题列表
+   * @apiParam  {String}  page 当前页数，缺省值为1
    * @apiGroup Question
    * @apiVersion 0.0.1
    */

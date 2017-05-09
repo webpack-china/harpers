@@ -37,15 +37,11 @@ Authorization callback URL: http://local.webpack-china.org/api/user?_method=post
 
 // step3:
 fill Client ID and Client Secret and redirect_uri (Authorization callback URL) in `/src/common/env/development.js`.
-
-// step4: 
-use Charles or Nginx to set a proxy
-local.webpack-china.org 127.0.0.1:9000
 ```
 
-4. Run `npm start`, open `http://local.webpack-china.org/`
+4. Run `npm start`, open `http://local.webpack-china.org:9000/`
 
-5. Visit `http://local.webpack-china.org/api/user?_method=post&type=github` to login
+5. Visit `http://local.webpack-china.org:9000/api/user?_method=post&type=github` to login
 
 ## API Documentation
 
