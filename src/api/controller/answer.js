@@ -1,7 +1,7 @@
 import Base from './base';
 import marked from 'marked';
 
-export default class extends think.controller.rest {
+export default class extends Base {
   /**
    * init
    * @param  {Object} http []
