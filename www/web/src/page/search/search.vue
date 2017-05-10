@@ -2,19 +2,19 @@
     <div class="search-wrap">
         <div class="left">
             <ul>
-                <li class="class-item" v-bind:class="{ active: isActive === 'qustions' }" 
+                <li class="class-item" v-bind:class="{ active: isActive === 'qustions' }"
                 @click="switchTab('qustions')">
                     <i></i>
                     <span>问答</span>
                     <span class="class-item-count">255结果</span>
                 </li>
-                <li class="class-item" v-bind:class="{ active: isActive === 'users' }" 
+                <li class="class-item" v-bind:class="{ active: isActive === 'users' }"
                 @click="switchTab('users')">
                     <i></i>
                     <span>用户</span>
                     <span class="class-item-count">255结果</span>
                 </li>
-                <li class="class-item" v-bind:class="{ active: isActive === 'tags' }" 
+                <li class="class-item" v-bind:class="{ active: isActive === 'tags' }"
                 @click="switchTab('tags')">
                     <i></i>
                     <span>标签</span>
@@ -26,8 +26,8 @@
             <div class="result-item" v-for="i in 10" v-if="isActive === 'qustions'">
                 <Question :qt="{}"></Question>
             </div>
-            <div class="result-item" v-for="i in 0" v-if="isActive === 'users'">
-                <Question :qt="{}"></Question>
+            <div class="result-item user-list" v-for="i in 5" v-if="isActive === 'users'">
+                <UserList></UserList>
             </div>
             <div class="result-item" v-for="i in 5" v-if="isActive === 'tags'">
                 <Question :qt="{}"></Question>
@@ -37,13 +37,13 @@
 </template>
 
 <script>
-    import { Question } from 'Components';
+    import { Question, UserList } from 'Components';
 
     export default {
         name: 'search',
         data () {
             return {
-                isActive: 'qustions',
+                isActive: 'users',
                 searchKey: ''
             };
         },
@@ -55,7 +55,7 @@
                 this.isActive = tab;
             }
         },
-        components: { Question }
+        components: { Question, UserList }
     };
 </script>
 
@@ -95,6 +95,9 @@
             border-bottom: 1px solid #eee;
             &:first-child {
                 padding-top: 0px;
+            }
+            &.user-list {
+                padding: 0px;
             }
         }
     }

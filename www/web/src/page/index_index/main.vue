@@ -30,7 +30,7 @@
                         <router-link to="detail" class="nav-link">问答</router-link>
                     </li>
                     <li class="nav-li">
-                        <a href="https://doc.webpack-china.org" class="nav-link" target="blank">文档</a>
+                        <a href="//doc.webpack-china.org" class="nav-link" target="blank">文档</a>
                     </li>
                     <li class="nav-li">
                         <router-link to="/" class="nav-link">帮助</router-link>
@@ -45,7 +45,7 @@
         <div id="dialog" class="dialog" v-bind:class="{ open: isOpen }">
             <div class="dialog-overlay"></div>
             <div class="dialog-content">
-                <i class="dialog-close" @click="close">×</i>
+                <i class="dialog-close" @click="close"></i>
                 <h2>快速登录</h2>
                 <a href="javascript:;" class="redirect" @click="redirectLogin">
                     <i></i>
@@ -259,8 +259,7 @@
         transition-duration: 0.4s;
     }
     .dialog-content {
-        width: 360px;
-        width: 280px;
+        width: 300px;
         background: #fff;
         padding: 1em;
         text-align: center;
@@ -271,17 +270,29 @@
         .redirect {
             display: block;
             margin: 25px auto 10px;
-            background-color: #ccc;
-            width: 50px;
-            height: 50px;
+            background-color: #fff;
+            width: 60px;
+            height: 60px;
+            background-image: url(./images/icon_git.svg);
             border-radius: 50%;
+            &:hover {
+                background-color: #ccc;
+            }
         }
     }
     .dialog-close {
         position: absolute;
-        top: 3px;
-        right: 5px;
+        top: 6px;
+        right: 6px;
+        width: 16px;
+        height: 16px;
+        background: #a5a5a5;
+        -webkit-mask: center no-repeat;
+        -webkit-mask-image: url(./images/icon_close.svg);
         cursor: pointer;
+        &:hover {
+            background: #000;
+        }
     }
     .dialog.open .dialog-content {
         -webkit-animation-duration: 0.4s;

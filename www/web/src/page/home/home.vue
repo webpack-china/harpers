@@ -89,7 +89,7 @@
         .search-btn {
             position: absolute;
             right: 15px;
-            top: 0.6rem;
+            bottom: 6px;
             height: 30px;
             width: 30px;
             background-image: url('./images/search.png');
