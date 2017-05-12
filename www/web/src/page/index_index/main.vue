@@ -3,37 +3,39 @@
         <header class="h-nav-bar clearfix">
             <router-link to="/" class="h-link-logo">webpack</router-link>
             <ul class="h-nav-profile">
-                <li>
-                    <a class="msgs" href="javascript:;">
+                <!-- <li>
+                    <a class="msgs" href="javascript:;" @click="login">
                         <span class="msgs-count">1</span>
                         <i class="msgs-icon"></i>
                     </a>
-                </li>
+                </li> -->
                 <li>
-                    <router-link to="User" class="nav-userinfo">
-                        <img class="avatar" />
+                    <router-link :to="{ name: 'user' }" class="nav-userinfo">
+                        <img class="avatar"/>
                     </router-link>
                 </li>
                 <li>
                     <i class="login-icon"></i>
                 </li>
                 <li>
-                    <a javascript=":;" class="add-question" @click="login">提问</a>
+                    <a javascript=":;" class="add-question" @click="addQuestion">提问</a>
                 </li>
             </ul>
             <div class="h-nav">
                 <ul class="nav-ul">
-                    <li class="nav-li">
-                        <router-link to="/" class="nav-link active">首页</router-link>
+                    <li class="nav-li" @click="switchMenu('home')">
+                        <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'home' }" >
+                        首页</router-link>
                     </li>
-                    <li class="nav-li">
-                        <router-link to="detail" class="nav-link">问答</router-link>
+                    <li class="nav-li" @click="switchMenu('detail')">
+                        <router-link :to="{ name: 'detail' }" class="nav-link" v-bind:class="{ active: isActive === 'detail' }">
+                        问答</router-link>
                     </li>
                     <li class="nav-li">
                         <a href="//doc.webpack-china.org" class="nav-link" target="blank">文档</a>
                     </li>
-                    <li class="nav-li">
-                        <router-link to="/" class="nav-link">帮助</router-link>
+                    <li class="nav-li" @click="switchMenu('help')">
+                        <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'help' }">帮助</router-link>
                     </li>
                 </ul>
             </div>
@@ -42,7 +44,7 @@
         <div class="container">
             <router-view></router-view>
         </div>
-        <div id="dialog" class="dialog" v-bind:class="{ open: isOpen }">
+        <div id="dialog" class="dialog" v-bind:class="{ open: isOpenLoginPopup }">
             <div class="dialog-overlay"></div>
             <div class="dialog-content">
                 <i class="dialog-close" @click="close"></i>
@@ -60,23 +62,34 @@
 
     export default {
         name: 'Main',
-        data () {
+        data() {
             return {
-                isOpen: false
+                isActive: 'home',
+                isOpenLoginPopup: false,
+                ifLogin: true
             };
         },
         created() {
-            console.log('hello steamer-vue');
+            this.getLoginUserInfo();
         },
         methods: {
-            login () {
-                this.isOpen = true;
+            getLoginUserInfo() {
+                console.log('获取登录用户信息，以及判断用户是否登录');
             },
-            redirectLogin () {
+            addQuestion() {
+                this.ifLogin === true ? this.$router.push({ name: 'question_new' }) : this.login();
+            },
+            login() {
+                this.isOpenLoginPopup = true;
+            },
+            redirectLogin() {
                 window.location.href = 'http://local.webpack-china.org/api/user?_method=post&type=github';
             },
-            close () {
-                this.isOpen = false;
+            close() {
+                this.isOpenLoginPopup = false;
+            },
+            switchMenu(menu) {
+                this.isActive = menu;
             }
         },
         components: { Search }
