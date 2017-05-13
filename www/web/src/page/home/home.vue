@@ -75,6 +75,9 @@
             background:#465e69;
             border: 1px solid #999999;
             border-radius: 30px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
         }
         .search-input {
             padding-right: 140px;
@@ -87,13 +90,14 @@
             transition: border-color .3s ease;
         }
         .search-btn {
-            position: absolute;
-            right: 15px;
-            bottom: 6px;
             height: 30px;
             width: 30px;
             background-image: url('./images/search.png');
             background-size: 100%;
+            vertical-align: middle;
+            -ms-flex-item-align: center;
+            -ms-grid-row-align: center;
+            align-self: center;
         }
         .selection-section {
 
@@ -134,7 +138,12 @@
         }
         .h-search {
             display: block;
+            width: 92%;
             height: initial;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            overflow: hidden;
         }
     }
 </style>
