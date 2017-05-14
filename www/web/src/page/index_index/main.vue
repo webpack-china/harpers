@@ -1,49 +1,50 @@
 <template>
     <div>
-        <header class="h-nav-bar clearfix">
-            <router-link to="/" class="h-link-logo">webpack</router-link>
-            <ul class="h-nav-profile">
-                <!-- <li>
-                    <a class="msgs" href="javascript:;" @click="login">
-                        <span class="msgs-count">1</span>
-                        <i class="msgs-icon"></i>
-                    </a>
-                </li> -->
-                <li>
-                    <router-link :to="{ name: 'user' }" class="nav-userinfo">
-                        <img class="avatar"/>
-                    </router-link>
-                </li>
-                <li>
-                    <i class="login-icon"></i>
-                </li>
-                <li>
-                    <a javascript=":;" class="add-question" @click="addQuestion">提问</a>
-                </li>
-            </ul>
-            <div class="h-nav">
-                <ul class="nav-ul">
-                    <li class="nav-li" @click="switchMenu('home')">
-                        <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'home' }" >
-                        首页</router-link>
+        <header class="h-nav-wrap">
+            <div class="h-nav-bar clearfix">
+                <router-link to="/" class="h-link-logo">webpack</router-link>
+                <div class="h-nav">
+                    <ul class="nav-ul">
+                        <li class="nav-li" @click="switchMenu('home')">
+                            <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'home' }" >
+                            首页</router-link>
+                        </li>
+                        <li class="nav-li" @click="switchMenu('detail')">
+                            <router-link :to="{ name: 'detail' }" class="nav-link" v-bind:class="{ active: isActive === 'detail' }">
+                            问答</router-link>
+                        </li>
+                        <li class="nav-li">
+                            <a href="//doc.webpack-china.org" class="nav-link" target="blank">文档</a>
+                        </li>
+                        <li class="nav-li" @click="switchMenu('help')">
+                            <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'help' }">帮助</router-link>
+                        </li>
+                    </ul>
+                </div>
+                <Search :placeholder="'输入关键词搜索'"s></Search>
+                <ul class="h-nav-profile">
+                    <!-- <li>
+                        <a class="msgs" href="javascript:;" @click="login">
+                            <span class="msgs-count">1</span>
+                            <i class="msgs-icon"></i>
+                        </a>
+                    </li> -->
+                    <!-- <li>
+                        <router-link :to="{ name: 'user' }" class="nav-userinfo">
+                            <img class="avatar"/>
+                        </router-link>
+                    </li> -->
+                    <li class="login-li">
+                        <svg aria-hidden="true" class="login-icon" height="20" width="20" version="1.1" viewBox="0 0 16 16" fill="#fff"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        <span class="login-text">登录</span>
                     </li>
-                    <li class="nav-li" @click="switchMenu('detail')">
-                        <router-link :to="{ name: 'detail' }" class="nav-link" v-bind:class="{ active: isActive === 'detail' }">
-                        问答</router-link>
-                    </li>
-                    <li class="nav-li">
-                        <a href="//doc.webpack-china.org" class="nav-link" target="blank">文档</a>
-                    </li>
-                    <li class="nav-li" @click="switchMenu('help')">
-                        <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'help' }">帮助</router-link>
+                    <li>
+                        <a javascript=":;" class="add-question" @click="addQuestion">提问</a>
                     </li>
                 </ul>
             </div>
-            <Search :placeholder="'输入关键词搜索'"s></Search>
         </header>
-        <div class="container">
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
         <div id="dialog" class="dialog" v-bind:class="{ open: isOpenLoginPopup }">
             <div class="dialog-overlay"></div>
             <div class="dialog-content">
@@ -69,11 +70,11 @@
                 ifLogin: true
             };
         },
-        created() {
-            this.getLoginUserInfo();
+        mounted() {
+            this.initLoginInfo();
         },
         methods: {
-            getLoginUserInfo() {
+            initLoginInfo() {
                 console.log('获取登录用户信息，以及判断用户是否登录');
             },
             addQuestion() {
@@ -111,10 +112,9 @@
     a {
         cursor: pointer;
     }
-    body {
-        background-color: #2B3A42;
-    }
     .container {
+        margin: 0 auto;
+        width: 1024px;
         min-height: 320px;
         background-color: #fff;
     }
@@ -141,13 +141,20 @@
     /*********** 公共样式end **********/
 
     /*********** 顶部导航栏start **********/
+    .h-nav-wrap {
+        background-color: #2B3A42;
+    }
     .h-nav-bar {
+        margin: 0 auto;
+        width: 1024px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
         a {
             text-decoration: none;
-        }
-        .h-link-logo,
-        .h-nav {
-            float: left;
         }
         .h-link-logo {
             color: #fff;
@@ -157,8 +164,18 @@
             text-align: center;
         }
         .h-nav-profile {
-            float: right;
-            margin-right: 20px;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
             li {
                 display: inline-block;
                 vertical-align: middle;
@@ -198,6 +215,26 @@
                 border-radius: 4px;
                 text-align: center;
             }
+            .login-li {
+                padding: 3px 8px;
+                margin-right: 18px;
+                border: 1px solid #1d78c1;
+                border-radius: 4px;
+                cursor: pointer;
+                &:hover {
+                    .login-icon, .login-text {
+                        fill: #ccc;
+                        color: #ccc;
+                    }
+                }
+            }
+            .login-text {
+                color: #fff;
+                vertical-align: middle;
+            }
+            .login-icon {
+                vertical-align: middle;
+            }
         }
         .nav-userinfo {
             display: table-cell;
@@ -214,9 +251,15 @@
                 vertical-align: middle;
             }
         }
-
+        
         .h-nav {
             margin-left: 20px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
         }
         .nav-li {
             float: left;
@@ -237,8 +280,10 @@
             }
         }
         .h-search {
-            position: relative;
-            left: 20px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            height: inherit;
         }
     }
     /*********** 顶部导航栏end **********/

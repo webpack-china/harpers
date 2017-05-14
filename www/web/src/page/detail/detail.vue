@@ -1,69 +1,72 @@
 <template>
-  <div class="list-page">
-    <ul class="keys clearfix">
-      <li class="key-li" :class="key.isActive ? 'active' : ''" v-for="key in keys" v-text="key.name" @click="switchContent(keys, key)"></li>
-    </ul>
-    <div class="list-container">
-      <ul class="navbar clearfix">
-        <li class="navbar-li" :class="title.isActive ? 'active' : ''" v-for="(title, index) in titles" v-text="title.name" @click="switchContent(titles, title)"></li>
-      </ul>
-      <list :qt="item" v-for="item in items" :name="item.name" :visitNum="item.visitNum" :key="item.key"></list>
+    <div class="list-page">
+        <div class="list-nav">
+            <ul class="keys clearfix">
+                <li class="key-li" :class="key.isActive ? 'active' : ''" v-for="key in keys" 
+                v-text="key.name" @click="switchContent(keys, key)"></li>
+            </ul>
+        </div>
+        <div class="list-container">
+            <ul class="navbar clearfix">
+                <li class="navbar-li" :class="title.isActive ? 'active' : ''" 
+                v-for="(title, index) in titles" v-text="title.name" @click="switchContent(titles, title)"></li>
+            </ul>
+            <list :qt="item" v-for="item in items" :name="item.name" :visitNum="item.visitNum" :key="item.key"></list>
+        </div>
     </div>
-  </div>
 </template>
 
-<style lang="less" scoped>
-  .list-page {
-  }
-  .keys {
-    margin-top: 8px;
-    padding: 0 20px;
-    background-color: #2C3A42;
-  }
-
-  .key-li {
-    float: left;
-    margin-right: 20px;
-    padding: 8px 8px 0;
-    line-height: 32px;
-    font-size: 12px;
-    color: #999;
-    cursor: pointer;
-    &.active,&:hover {
-      color: #F5FAFA;
-      border-bottom: #f00 2px solid;
+<style lang="less" scope>
+    .list-nav {
+        background-color: #2C3A42;
     }
-  }
 
-  .list-container {
-    overflow: hidden;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    width: 700px;
-  }
-
-  .navbar {
-    padding-top: 20px;
-    border-bottom: 1px solid #D8D8D8;
-    background-color: #fff;
-  }
-
-  .navbar-li {
-    float: left;
-    font-size: 14px;
-    margin-right: 30px;
-    cursor: pointer;
-    line-height: 34px;
-    color: #999;
-    &.active {
-      color: #333;
+    .keys, .list-container {
+        margin: 0 auto;
+        width: 1024px;
     }
-  }
+    
+    .key-li {
+        float: left;
+        margin-right: 20px;
+        padding: 8px 8px 0;
+        line-height: 32px;
+        font-size: 12px;
+        color: #999;
+        cursor: pointer;
+        &.active,&:hover {
+          color: #F5FAFA;
+          border-bottom: #f00 2px solid;
+        }
+    }
 
-  .h-question {
-    padding: 20px 0;
-    border-bottom: 1px dashed #999;
-  }
+    .list-container {
+        overflow: hidden;
+        padding-bottom: 20px;
+    }
+
+    .navbar {
+        padding-top: 20px;
+        border-bottom: 1px solid #D8D8D8;
+        background-color: #fff;
+    }
+
+    .navbar-li {
+        float: left;
+        font-size: 14px;
+        margin-right: 30px;
+        cursor: pointer;
+        line-height: 34px;
+        color: #999;
+        &.active {
+          color: #333;
+        }
+    }
+
+    .h-question {
+        padding: 20px 0;
+        border-bottom: 1px dashed #999;
+    }
 </style>
 
 

@@ -1,23 +1,27 @@
 <template>
-    <div class="interactive-wrap">
-        <section class="search-section">
-            <div class="logo-box">
-                <img src="./images/logo.png" alt="logo">
+    <div class="wrap-bg">
+        <div class="container">
+            <div class="interactive-wrap">
+                <section class="search-section">
+                    <div class="logo-box">
+                        <img src="./images/logo.png" alt="logo">
+                    </div>
+                    <div class="search-box">
+                        <Search :placeholder="'你想知道的，从这里开始'"></Search>
+                        <a href="javascript:;" class="search-btn"></a>
+                    </div>
+                </section>
+                <section class="selection-section">
+                    <h1 class="selection-header">精选问答</h1>
+                    <div class="selection-content">
+                        <div class="selection-item" v-for="item in sliceQuesions">
+                            <Question :qt="{}"></Question>
+                        </div>
+                        <router-link to="detail" class="more-qustions">更多问答</router-link>
+                    </div>
+                </section>
             </div>
-            <div class="search-box">
-                <Search :placeholder="'你想知道的，从这里开始'"></Search>
-                <a href="javascript:;" class="search-btn"></a>
-            </div>
-        </section>
-        <section class="selection-section">
-            <h1 class="selection-header">精选问答</h1>
-            <div class="selection-content">
-                <div class="selection-item" v-for="item in sliceQuesions">
-                    <Question :qt="{}"></Question>
-                </div>
-                <router-link to="detail" class="more-qustions">更多问答</router-link>
-            </div>
-        </section>
+        </div>
     </div>
 </template>
 
@@ -56,11 +60,14 @@
     };
 </script>
 
-<style lang="less">
+<style lang="less" scope>
+    .wrap-bg {
+        background-color: #2c3a42;
+    }
     .interactive-wrap {
         background-color: #2c3a42;
         .search-section {
-            margin: 100px 0px;
+            padding: 100px 0px;
         }
         .logo-box {
             margin-bottom: 60px;
@@ -105,16 +112,17 @@
         .selection-header {
             margin: auto;
             margin-bottom: 40px;
-            width: 70%;
             color: #dee4e5;
             font-size: 24px;
         }
+        .selection-content {
+            padding-bottom: 20px;
+        }
         .selection-item {
             margin: auto;
-            padding: 20px;
+            padding: 0 20px;
             margin-bottom: 20px;
             background-color: #fff;
-            width: 70%;
             box-shadow:0 2px 4px 0 rgba(0,0,0,0.50);
             border-radius:6px;
             .h-q-wrap {
@@ -123,7 +131,7 @@
         }
         .more-qustions {
             display: block;
-            margin: 35px auto 35px;
+            margin: 0 auto;
             width: 100px;
             height: 30px;
             line-height: 30px;
@@ -144,6 +152,9 @@
             -ms-flex: 1;
             flex: 1;
             overflow: hidden;
+        }
+        .h-question {
+            border-bottom: none;
         }
     }
 </style>
