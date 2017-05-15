@@ -10,6 +10,7 @@
                         <Search :placeholder="'你想知道的，从这里开始'"></Search>
                         <a href="javascript:;" class="search-btn"></a>
                     </div>
+                    <p></p>
                 </section>
                 <section class="selection-section">
                     <h1 class="selection-header">精选问答</h1>
@@ -77,10 +78,10 @@
             position: relative;
             padding: 3px 20px;
             margin: 0 auto;
-            max-width: 600px;
-            width: 55%;
-            background:#465e69;
-            border: 1px solid #999999;
+            max-width: 700px;
+            width: 70%;
+            background-color: #465e69;
+            border: 1px solid #7fa0b2;
             border-radius: 30px;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -95,6 +96,18 @@
             font-size: 24px;
             border: 0;
             transition: border-color .3s ease;
+            &::-webkit-input-placeholder { /* WebKit browsers */
+                color: #7fa0b2;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color: #7fa0b2;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color: #7fa0b2;
+            }
+            &::-ms-input-placeholder { /* Internet Explorer 10+ */
+                color: #7fa0b2;
+            }
         }
         .search-btn {
             height: 30px;

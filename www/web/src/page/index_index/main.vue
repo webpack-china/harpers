@@ -59,6 +59,7 @@
 </template>
 
 <script>
+    import { mapState, mapActions } from 'vuex';
     import { Search } from 'Components';
 
     export default {
@@ -71,12 +72,12 @@
             };
         },
         mounted() {
-            this.initLoginInfo();
+            this.fetchUserInfo();
         },
         methods: {
-            initLoginInfo() {
-                console.log('获取登录用户信息，以及判断用户是否登录');
-            },
+            ...mapActions([
+                'fetchUserInfo'
+            ]),
             addQuestion() {
                 this.ifLogin === true ? this.$router.push({ name: 'question_new' }) : this.login();
             },
@@ -92,6 +93,11 @@
             switchMenu(menu) {
                 this.isActive = menu;
             }
+        },
+        computed: {
+            ...mapState({
+                user: state => state.User.user
+            })
         },
         components: { Search }
     };
@@ -143,6 +149,8 @@
     /*********** 顶部导航栏start **********/
     .h-nav-wrap {
         background-color: #2B3A42;
+        min-width: 1024px;
+        overflow: hidden;
     }
     .h-nav-bar {
         margin: 0 auto;
@@ -251,7 +259,7 @@
                 vertical-align: middle;
             }
         }
-        
+
         .h-nav {
             margin-left: 20px;
             display: -webkit-box;
@@ -284,6 +292,20 @@
             display: -ms-flexbox;
             display: flex;
             height: inherit;
+        }
+        .search-input {
+            &::-webkit-input-placeholder { /* WebKit browsers */
+                color: #999;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color: #999;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color: #999;
+            }
+            &::-ms-input-placeholder { /* Internet Explorer 10+ */
+                color: #999;
+            }
         }
     }
     /*********** 顶部导航栏end **********/
