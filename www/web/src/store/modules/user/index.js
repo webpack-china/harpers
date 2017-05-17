@@ -15,7 +15,7 @@ const getters = {
 
 const actions = {
     fetchUserInfo ({ commit, state }, params) {
-        userService.getUser().then(function (response) {
+        userService.getUser(params).then(function (response) {
             commit(GET_USER_SUCCESS, {
                 data: response.data
             });

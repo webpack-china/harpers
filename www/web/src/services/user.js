@@ -18,7 +18,8 @@ class UserService {
     getUser (params) {
         return xhr({
             method: 'get',
-            url: '/user'
+            url: '/user',
+            params: params
         });
     }
 }

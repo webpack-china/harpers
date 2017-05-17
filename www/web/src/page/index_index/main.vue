@@ -72,7 +72,7 @@
             };
         },
         mounted() {
-            this.fetchUserInfo();
+            this.fetchUserInfo({ id: 1 });
         },
         methods: {
             ...mapActions([
