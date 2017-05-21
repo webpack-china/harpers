@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './home.js';
 import User from './user.js';
-import Detail from './detail.js';
+import Questions from './questions.js';
 import Question from './question';
 import Search from './search';
 
@@ -15,7 +15,7 @@ export default new Router({
     routes: [
         Home,
         User,
-        Detail,
+        Questions,
         ...Question,
         Search
     ]

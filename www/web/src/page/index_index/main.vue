@@ -9,8 +9,8 @@
                             <router-link :to="{ name: 'Home' }" class="nav-link" v-bind:class="{ active: isActive === 'home' }" >
                             首页</router-link>
                         </li>
-                        <li class="nav-li" @click="switchMenu('detail')">
-                            <router-link :to="{ name: 'detail' }" class="nav-link" v-bind:class="{ active: isActive === 'detail' }">
+                        <li class="nav-li" @click="switchMenu('questions')">
+                            <router-link :to="{ name: 'questions' }" class="nav-link" v-bind:class="{ active: isActive === 'questions' }">
                             问答</router-link>
                         </li>
                         <li class="nav-li">
@@ -21,7 +21,7 @@
                         </li>
                     </ul>
                 </div>
-                <Search :placeholder="'输入关键词搜索'"s></Search>
+                <Search :placeholder="'输入关键词搜索'" v-if="!ifHomePage"></Search>
                 <ul class="h-nav-profile">
                     <!-- <li>
                         <a class="msgs" href="javascript:;" @click="login">
@@ -29,14 +29,14 @@
                             <i class="msgs-icon"></i>
                         </a>
                     </li> -->
-                    <!-- <li>
+                    <li v-if="ifLogin">
                         <router-link :to="{ name: 'user' }" class="nav-userinfo">
-                            <img class="avatar"/>
+                            <img class="avatar" v-bind:src="user.avatar_url" />
                         </router-link>
-                    </li> -->
-                    <li class="login-li">
+                    </li>
+                    <li class="login-li" @click="login" v-else-if="!ifLogin">
                         <svg aria-hidden="true" class="login-icon" height="20" width="20" version="1.1" viewBox="0 0 16 16" fill="#fff"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
-                        <span class="login-text">登录</span>
+                        <span class="login-text">注册 · 登录</span>
                     </li>
                     <li>
                         <a javascript=":;" class="add-question" @click="addQuestion">提问</a>
@@ -61,6 +61,7 @@
 <script>
     import { mapState, mapActions } from 'vuex';
     import { Search } from 'Components';
+    import { getCookie } from 'utils';
 
     export default {
         name: 'Main',
@@ -68,11 +69,16 @@
             return {
                 isActive: 'home',
                 isOpenLoginPopup: false,
-                ifLogin: true
+                ifLogin: false,
+                ifHomePage: true
             };
         },
         mounted() {
-            this.fetchUserInfo({ id: 1 });
+            var userId = getCookie('user_id');
+            if (userId) {
+                this.fetchUserInfo({ id: userId });
+                this.ifLogin = true;
+            }
         },
         methods: {
             ...mapActions([
@@ -85,12 +91,13 @@
                 this.isOpenLoginPopup = true;
             },
             redirectLogin() {
-                window.location.href = 'http://local.webpack-china.org/api/user?_method=post&type=github';
+                window.location.href = '//local.webpack-china.org/api/user?_method=post&type=github';
             },
             close() {
                 this.isOpenLoginPopup = false;
             },
             switchMenu(menu) {
+                menu === 'home' ? this.ifHomePage = true : this.ifHomePage = false;
                 this.isActive = menu;
             }
         },
@@ -224,7 +231,7 @@
                 text-align: center;
             }
             .login-li {
-                padding: 3px 8px;
+                padding: 3px 5px;
                 margin-right: 18px;
                 border: 1px solid #1d78c1;
                 border-radius: 4px;

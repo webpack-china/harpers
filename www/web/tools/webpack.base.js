@@ -130,7 +130,7 @@ var baseConfig = {
         ],
         extensions: [".js", ".jsx", ".css", ".less", ".png", ".jpg", ".jpeg", ".ico", ".handlebars", "swf"],
         alias: {
-            'utils': path.join(configWebpack.path.src, '/js/common/utils'),
+            'utils': path.join(configWebpack.path.src, 'common/utils'),
             'Components': path.resolve(__dirname, '../src/components/index.js'),
             'services': path.resolve(__dirname, '../src/services/index.js')
         }

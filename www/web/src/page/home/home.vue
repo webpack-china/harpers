@@ -10,13 +10,13 @@
                         <Search :placeholder="'你想知道的，从这里开始'"></Search>
                         <a href="javascript:;" class="search-btn"></a>
                     </div>
-                    <p></p>
+                    <p class="summary">致力于提供前端工程化方案的问答社区</p>
                 </section>
                 <section class="selection-section">
                     <h1 class="selection-header">精选问答</h1>
                     <div class="selection-content">
                         <div class="selection-item" v-for="item in sliceQuesions">
-                            <Question :qt="{}"></Question>
+                            <Question :qt="item"></Question>
                         </div>
                         <router-link to="detail" class="more-qustions">更多问答</router-link>
                     </div>
@@ -38,20 +38,18 @@
             };
         },
         mounted () {
-            this.init();
-            this.fetchList();
+            this.getSelectedQts();
         },
         methods: {
             ...mapActions([
-                'fetchList'
-            ]),
-            init: function () {
-                console.dir('首页数据初始化');
-            }
+                'getSelectedQts'
+            ])
         },
         computed: {
             ...mapState({
-                quesions: state => state.Home.quesions
+                quesions: function (state) {
+                    return state.Home.quesions;
+                }
             }),
             ...mapGetters([
                 'sliceQuesions'
@@ -86,6 +84,11 @@
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
+        }
+        .summary {
+            margin-top: 35px;
+            text-align: center;
+            color: #fff;
         }
         .search-input {
             padding-right: 140px;

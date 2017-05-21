@@ -1,14 +1,12 @@
 /*
 * @Author: leo
-* @Date:   2017-04-11 23:52:00
+* @Date:   2017-05-21 23:21:00
 * @Last Modified by:   leo
-* @Last Modified time: 2017-04-11 23:52:00
-* @introduction 首页store
+* @Last Modified time: 2017-05-21 23:21:00
+* @introduction 问题store
 */
 
 import { qustionService } from 'services';
-
-const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
 
 const state = {
     isFetching: false,
@@ -16,13 +14,11 @@ const state = {
 };
 
 const getters = {
-    sliceQuesions: state => {
-        return state.quesions.slice(0, 5);
-    }
+
 };
 
 const actions = {
-    getSelectedQts ({ commit, state }, params) {
+    getQuestions ({ commit, state }, params) {
         qustionService.getQuestions().then(function (response) {
             commit(FETCH_LIST_SUCCESS, {
                 data: response.data
@@ -32,10 +28,7 @@ const actions = {
 };
 
 const mutations = {
-    [FETCH_LIST_SUCCESS] (state, action) {
-        state.isFetching = false;
-        state.quesions = action.data.data;
-    }
+    
 };
 
 export default {

@@ -11,7 +11,7 @@
                 <li class="navbar-li" :class="title.isActive ? 'active' : ''" 
                 v-for="(title, index) in titles" v-text="title.name" @click="switchContent(titles, title)"></li>
             </ul>
-            <list :qt="item" v-for="item in items" :name="item.name" :visitNum="item.visitNum" :key="item.key"></list>
+            <Question :qt="item" v-for="item in items" :key="item.key"></Question>
         </div>
     </div>
 </template>
@@ -69,12 +69,10 @@
     }
 </style>
 
-
 <script>
 
     import axios from 'axios';
-
-    import List from '../../components/question';
+    import { Question } from 'Components';
 
     var keys = [{
         name: 'ALL'
@@ -118,10 +116,10 @@
 
     export default {
 
-        name: 'detail',
+        name: 'qustions',
 
         components: {
-            list: List
+            Question
         },
 
         methods: {
@@ -144,8 +142,7 @@
         created: function () {
             // 初始化渲染
             initGetQuestion().then((result) => {
-                console.log(result);
-                this.items = result;
+                this.items = result.data;
             }, function (error) {
                 throw new Error(error);
             });
