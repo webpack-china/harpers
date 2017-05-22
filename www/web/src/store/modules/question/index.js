@@ -6,7 +6,7 @@
 * @introduction 问题store
 */
 
-import { qustionService } from 'services';
+// import { qustionService } from 'services';
 
 const state = {
     isFetching: false,
@@ -19,11 +19,11 @@ const getters = {
 
 const actions = {
     getQuestions ({ commit, state }, params) {
-        qustionService.getQuestions().then(function (response) {
-            commit(FETCH_LIST_SUCCESS, {
-                data: response.data
-            });
-        });
+        // qustionService.getQuestions().then(function (response) {
+        //     commit(FETCH_LIST_SUCCESS, {
+        //         data: response.data
+        //     });
+        // });
     }
 };
 

@@ -49,6 +49,7 @@
         },
         mounted () {
             this.searchKey = this.$route.query.query;
+            // TODO ajax search
         },
         methods: {
             switchTab (tab) {
