@@ -1,2 +1,3 @@
 # 把外部markdown组件排除
 **/markdown/**
+www/web/src/common/*.js

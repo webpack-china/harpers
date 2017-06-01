@@ -9,7 +9,7 @@ export default class extends Base {
   init(http){
     super.init(http);
   }
-  
+
   /**
    * get user
    */
@@ -28,6 +28,7 @@ export default class extends Base {
     try {
       let userId = await login.signUp(this);
       this.http._userId = userId;
+      this.http.cookie('user_id', userId);
       return this.action('token', 'post');
     } catch(e) {
       return this.fail( e.message );

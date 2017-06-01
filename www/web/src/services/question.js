@@ -14,6 +14,17 @@ import xhr from './xhr';
  */
 class QustionService {
     /**
+     * 获取问答列表
+     * @return {Promise}
+     */
+    getQuestions (params) {
+        return xhr({
+            method: 'get',
+            url: '/question',
+            params: params
+        });
+    };
+    /**
      * 提交问答
      * @return {Promise}
      */

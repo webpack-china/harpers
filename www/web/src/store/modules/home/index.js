@@ -6,7 +6,7 @@
 * @introduction 首页store
 */
 
-import { homeService } from 'services';
+import { qustionService } from 'services';
 
 const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
 
@@ -22,8 +22,8 @@ const getters = {
 };
 
 const actions = {
-    fetchList ({ commit, state }, params) {
-        homeService.getList().then(function (response) {
+    getSelectedQts ({ commit, state }, params) {
+        qustionService.getQuestions().then(function (response) {
             commit(FETCH_LIST_SUCCESS, {
                 data: response.data
             });
@@ -34,8 +34,7 @@ const actions = {
 const mutations = {
     [FETCH_LIST_SUCCESS] (state, action) {
         state.isFetching = false;
-        // state.quesions = action.data;
-        state.quesions = [{}, {}, {}, {}, {}, {}, {}, {}];
+        state.quesions = action.data.data;
     }
 };
 

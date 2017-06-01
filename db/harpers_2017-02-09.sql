@@ -227,6 +227,7 @@ CREATE TABLE `harp_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `name` varchar(255) DEFAULT NULL COMMENT '用户名称',
   `nickname` varchar(255) DEFAULT NULL COMMENT '用户昵称',
+  `avatar_url` varchar(255) DEFAULT NULL COMMENT '用户头像',
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `type` int(11) DEFAULT '0' COMMENT '用户类型',
   `email` varchar(255) DEFAULT NULL COMMENT '用户邮箱',

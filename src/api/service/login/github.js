@@ -78,10 +78,12 @@ export default class extends think.service.base {
     let user = {
       name: userInfo.login,
       nickname: userInfo.name,
+      avatar_url: userInfo.avatar_url,
       email: userInfo.email,
       github: userInfo.login
     };
     let res = await req.model('user').addUser(user, req.ip());
+    // res = { id: 1, type: "exist" }
     return res.id;
   }
 
