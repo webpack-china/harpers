@@ -2,15 +2,18 @@
     <div>
         <QuestionDetail></QuestionDetail>
         <QAList></QAList>
-        <MarkDown
-        :mdValuesP="mdData.mdValue"
-        :fullPageStatusP="false"
-        :editStatusP="false"
-        :previewStatusP="false"
-        :navStatusP="false"
-        :placeholder="'添加你的答案'"
-        @childevent="childEventHandler">
-        </MarkDown>
+        <div id="qa-write-answer">
+            <MarkDown
+            :mdValuesP="mdData.mdValue"
+            :fullPageStatusP="false"
+            :editStatusP="false"
+            :previewStatusP="false"
+            :navStatusP="false"
+            :placeholder="'添加你的答案'"
+            @childevent="childEventHandler">
+            </MarkDown>
+        </div>
+    
 
     </div>
 </template>

@@ -8,7 +8,7 @@
         <span class="btn btn-text" v-if="true">{{btnText}}</span>
         </p>
     </div>
-    <button class="btn-write">写回答</button>
+    <button class="btn-write"><a href="#qa-write-answer">写回答</a></button>
 
 </div> 
 </template>
