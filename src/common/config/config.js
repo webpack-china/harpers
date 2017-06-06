@@ -12,5 +12,10 @@ export default {
       client_secret: '',//github client secret
       redirect_uri: ''  //github redirect uri xxx.com/api/user?_method=post&type=github
     }
+  },
+  cors:{
+      origin: '*',
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false 
   }
 };
