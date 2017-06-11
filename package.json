@@ -20,16 +20,19 @@
     "last 5 versions"
   ],
   "dependencies": {
-    "babel-runtime": "6.x.x",
+    "babel-preset-es2015-loose": "^8.0.0",
+    "babel-runtime": "^6.23.0",
     "marked": "^0.3.6",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "source-map-support": "0.4.0",
+    "think-cors": "^1.1.2",
     "thinkjs": "2.2.x",
-    "vue-scroll": "^2.0.2"
+    "vue-scroll": "^2.0.3",
+    "webpack-core": "^0.6.9"
   },
   "devDependencies": {
-    "apidoc": "^0.17.5",
+    "apidoc": "^0.17.6",
     "autoprefixer": "^6.7.7",
     "ava": "^0.18.2",
     "axios": "^0.16.0",
@@ -44,7 +47,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-preset-stage-3": "^6.22.0",
     "browserslist": "^1.7.7",
-    "caniuse-db": "^1.0.30000639",
+    "caniuse-db": "^1.0.30000677",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin-hash": "^4.0.1",
     "core-js": "^2.4.1",
