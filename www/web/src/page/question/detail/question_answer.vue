@@ -3,7 +3,11 @@
     <p class="answer-author">
         <span class="answer-author-icon"></span><span class="answer-author-name">大萝卜</span>
     </p>
-    <p class="answer-detail">在这场战斗前，我们压抑的情绪积累到顶点，那些砍瓜切菜的镜头，既是对人物迟暮英雄主义不可或缺的能量补充， 也是观众情绪一次势在必行的释放。 没有它，那份“虽千万人，吾往矣”的悲壮将大打折扣。 “暴力”对《金刚狼3》绝不是噱头，是血肉。 被枪打烂的侧脸、皮开肉绽的伤疤、一刀落地的脑袋……这些儿童不宜的镜头，是推动剧情和刻画人物的必备因素。 这也是《金刚狼3》在国外被大面积叫好的原因。</p>
+    <div class="answer-detail" >
+        <div class="markdown-body" v-html="answer">
+            
+        </div>
+    </div>
     <p class="answer-time">發佈于 2017-03-08</p>
     <div class="answer-operation">
         <span class="answer-comment">发布评论</span>
@@ -28,12 +32,11 @@ export default {
     },
     data () {
         return {
-
+            answer: '<h1 id="asd">asd</h1> <p>打算的 阿萨德</p> <h2 id="-">阿萨德</h2> <h3 id="-">阿萨德阿萨德就阿萨德</h3>'
         };
     },
 
     props: {
-
         comments: {
             type: Array,
             default: () => []
@@ -63,6 +66,7 @@ export default {
         }
     }
     &-detail {
+        padding: 20px 0;
     }
     &-time {
         color: #999;

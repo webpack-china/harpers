@@ -5,6 +5,7 @@ import User from './modules/user';
 import Home from './modules/home';
 import Question from './modules/question';
 import Search from './modules/search';
+import Detail from './modules/question_detail';
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         User,
         Home,
         Question,
-        Search
+        Search,
+        Detail
     }
 });

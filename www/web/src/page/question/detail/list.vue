@@ -1,6 +1,6 @@
 <template>
 <div class="answer-list">
-    <div class="answer-total">4个回答</div>
+    <div class="answer-total">{{total}}个回答</div>
     <ul>
         <li v-for="answer in answers" class="answer-item">
             <Answer></Answer>
@@ -28,7 +28,11 @@ export default {
     props: {
         answers: {
             type: Array,
-            default: () => [1, 2, 3, 4, 5]
+            default: () => []
+        },
+        total: {
+            type: Number,
+            default: 0
         }
     }
 
@@ -37,13 +41,19 @@ export default {
 
 <style lang="less">
 .answer-list {
-    padding: 20px 0 20px 20px;
-    width: 700px;
+    // padding: 20px 0 20px 20px;
+    width: 980px;
+    margin: 0 auto;
     .answer-total {
+        width: 700px;
         border-bottom: 1px solid #d8d8d8;
         padding: 10px 0;
     }
+    ul {
+        width: 700px;
+    }
 }
+
 .answer-item {
     border-bottom: 1px dashed #333;
 }

@@ -19,8 +19,8 @@ export default {
   },
   login: {
     github: {
-      client_id: '20bfe0d90962d479a5d2',
-      client_secret: '0ea59158b99cf15f58cd28f54892810ca019637b',
+      client_id: '59c521e73350de0bb59b',
+      client_secret: '816cecef4cb535f2bab57dd44397fd98388326d7',
       redirect_uri: 'http://local.webpack-china.org:9000/api/user?_method=post&type=github'
     }
   }

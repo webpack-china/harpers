@@ -7,12 +7,12 @@ export default {
   type: 'mysql',
   adapter: {
     mysql: {
-      host: '',
-      port: '',
-      database: '',
-      user: '',
-      password: '',
-      prefix: '',
+      host: '127.0.0.1',
+      port: '4320',
+      database: 'harpers',
+      user: 'root',
+      password: 'root',
+      prefix: 'harp_',
       encoding: 'utf8'
     },
     mongo: {

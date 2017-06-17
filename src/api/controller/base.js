@@ -25,16 +25,17 @@ export default class extends think.controller.rest {
   }
 
   async __before() {
+    // register or login check
     let name = this.http.module + '/' + this.http.controller + '/' + this.http.action;
     if( this.allowList.indexOf(name) > -1 ) {
       return;
     }
-
+    // session
     let userInfo = await this.session('userInfo') || {};
     if( think.isEmpty(userInfo) ) {
       return this.fail('USER_NOT_LOGIN');
     }
-
+    
     let type = userInfo.type | 0;
     if( type === USER_TYPE.NORMAL && this.http.controller === this.config('console') ) {
       return this.fail('USER_NO_PERMISSION');

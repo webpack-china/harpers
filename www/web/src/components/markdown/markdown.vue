@@ -30,9 +30,21 @@
         </div>
         <div class="mdBodyContainer">
             <div class="editContainer" v-if="editStatus">
-                <textarea name="" class="mdEditor" @keydown.9="tabFn" v-scroll="editScroll" v-model="input" :placeholder="placeholder"></textarea>
+                <textarea name="" 
+                        ref="mdEditor" 
+                        class="mdEditor"
+                         @keydown.9="tabFn" 
+                         v-scroll="editScroll" 
+                         v-model="input" 
+                         :placeholder="placeholder">
+                             
+                </textarea>
             </div>
-            <div class="previewContainer markdown-body" v-scroll="previewScroll" v-html="compiledMarkdown" v-if="previewStatus">
+            <div class="previewContainer markdown-body" 
+                ref="previewContainer" 
+                v-scroll="previewScroll" 
+                v-html="compiledMarkdown" 
+                v-if="previewStatus">
             </div>
         </div>
     </div>
@@ -134,7 +146,7 @@
                 insertContent(tmp, this);
             },
             addCode: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = this.$refs.mdEditor;
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -270,10 +282,15 @@
                     sanitize: true
                 });
                 this.$emit('childevent', data);
-                let maxEditScrollHeight=document.querySelector('.mdEditor').scrollHeight-document.querySelector('.mdEditor').clientHeight;
-                let maxPreviewScrollHeight=document.querySelector('.previewContainer').scrollHeight-document.querySelector('.previewContainer').clientHeight;
-                this.maxEditScrollHeight = maxEditScrollHeight
-                this.maxPreviewScrollHeight = maxPreviewScrollHeight
+                
+                let mdEditorDom = this.$refs.mdEditor;
+                if(this.previewStatus) {
+                    let previewContainerDom = this.$refs.previewContainer;
+                    let maxEditScrollHeight= mdEditorDom.scrollHeight - mdEditorDom.clientHeight;
+                    let maxPreviewScrollHeight= previewContainerDom.scrollHeight - previewContainerDom.clientHeight;
+                    this.maxEditScrollHeight = maxEditScrollHeight;
+                    this.maxPreviewScrollHeight = maxPreviewScrollHeight;
+                }
             }
         }
     }

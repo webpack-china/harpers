@@ -26,7 +26,7 @@ export default class extends Base {
       markdown_content,
       content
     };
-    
+    console.log(answer); 
     try {
       let answer_id = await this.modelInstance.addAnswer(answer, this.ip());
       return this.success(answer_id);

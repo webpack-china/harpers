@@ -34,8 +34,8 @@ export default class extends think.logic.base {
    */
   postAction() {
     this.rules = {
-      question_id: 'int|required',
-      markdown_content: 'string|required'
+      // question_id: 'int|required',
+      // markdown_content: 'string|required'
     };
   }
 
