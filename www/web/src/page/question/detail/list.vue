@@ -3,7 +3,7 @@
     <div class="answer-total">{{total}}个回答</div>
     <ul>
         <li v-for="answer in answers" class="answer-item">
-            <Answer></Answer>
+            <Answer v-bind="answer"></Answer>
         </li>
     </ul> 
 </div>
@@ -55,6 +55,6 @@ export default {
 }
 
 .answer-item {
-    border-bottom: 1px dashed #333;
+    border-bottom: 1px solid #efefef;
 }
 </style>

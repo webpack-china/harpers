@@ -1,20 +1,23 @@
 <template>
 <div class="answer"> 
     <p class="answer-author">
-        <span class="answer-author-icon"></span><span class="answer-author-name">大萝卜</span>
+        <span class="answer-author-icon">
+            <img :src="avatarUrl" alt="">
+        </span><span class="answer-author-name">{{userName}}</span>
     </p>
     <div class="answer-detail" >
-        <div class="markdown-body" v-html="answer">
-            
+        <div class="markdown-body" v-html="content">
         </div>
     </div>
-    <p class="answer-time">發佈于 2017-03-08</p>
     <div class="answer-operation">
+        <button class="answer-btn answer-agree" @click="handleAgree">{{agreeCount}}</button>
+        <button class="answer-btn answer-against" @click="handleAgainst"></button>
+        <span class="answer-record">{{record}}</span>
         <span class="answer-comment">发布评论</span>
     </div>
     <div class="answer-comments">
         <ul>
-            <li v-for="comment in comments"></li>
+            <!-- <li v-for="comment in comments"></li> -->
         </ul>
         <div>
             
@@ -32,14 +35,24 @@ export default {
     },
     data () {
         return {
-            answer: '<h1 id="asd">asd</h1> <p>打算的 阿萨德</p> <h2 id="-">阿萨德</h2> <h3 id="-">阿萨德阿萨德就阿萨德</h3>'
         };
     },
+    props: ['userName', 'avatarUrl', 'content', 'updateTime', 'againstCount', 'agreeCount', 'commentCount', 'createTime', 'answerId', 'questionId'],
+    computed: {
+        record() {
+            let createTime = new Date(this.createTime);
+            let updateTime = new Date(this.updateTime);
+            let preStr = createTime.getTime() === updateTime.getTime() ? '发布于' : ' 编辑于';
 
-    props: {
-        comments: {
-            type: Array,
-            default: () => []
+            return `${preStr} ${updateTime.getFullYear()}-${updateTime.getMonth() + 1}-${updateTime.getDate()}`;
+        }
+    },
+    methods: {
+        handleAgree() {
+
+        },
+        handleAgainst() {
+
         }
     }
 };
@@ -73,6 +86,44 @@ export default {
     }
     &-operation {
         color:#999;
+        .answer-btn {
+            // display: inline-block;
+            border: none;
+            text-align: center;
+            line-height: 26px;
+            background: #e3edf8;
+            color: #1d78c1;
+            padding: 0 10px;
+            height: 26px;
+            border-radius: 2px;
+            &:hover {
+                background: #e4ebf3;
+            }
+            &:before {
+                display: inline-block;
+                content: ' ';
+                width: 0;
+                height: 0;
+                border-top: 0px solid transparent;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 0px solid transparent;
+            }
+        }
+        .answer-agree {
+            &:before {
+                border-bottom: 8px solid #247cc3;
+                margin-right: 4px;
+            }
+        }
+        .answer-against {
+            &:before {
+                border-top: 8px solid #247cc3;
+            }
+        }
+        .answer-record {
+            margin: 0 15px;
+        }
         .answer-comment {
             padding-left: 20px;
             background-image: url('./images/comment.png');

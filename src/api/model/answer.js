@@ -1,6 +1,14 @@
 import Base from './base';
 
 export default class extends Base {
+
+  relation = {
+    user: {
+      type: think.model.BELONG_TO,
+      field: 'id,name,avatar_url'
+    }
+  }
+
   acceptAnswer(question_id, answer_id, user_id) {
     let status = {
       question_id,
