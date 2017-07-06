@@ -16,7 +16,14 @@ let instance = axios.create({
 var xhr = ({ method = 'get', url, params = null }) => {
     switch (method) {
         case 'get':
+            return instance[method](url, {
+                params: params
+            }).then(commonSuccessHandler)
+            .catch(commonErrorHandler);
         case 'post':
+            return instance[method](url, params)
+                .then(commonSuccessHandler)
+                .catch(commonErrorHandler);
         case 'delete':
         case 'put':
         case 'head':

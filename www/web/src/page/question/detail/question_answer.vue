@@ -13,7 +13,7 @@
         <button class="answer-btn answer-agree" @click="handleAgree">{{agreeCount}}</button>
         <button class="answer-btn answer-against" @click="handleAgainst"></button>
         <span class="answer-record">{{record}}</span>
-        <span class="answer-comment">发布评论</span>
+        <button class="answer-comment" @click="handleComment">发布评论</button>
     </div>
     <div class="answer-comments">
         <ul>
@@ -53,6 +53,9 @@ export default {
         },
         handleAgainst() {
 
+        },
+        handleComment() {
+            // toggle show comments
         }
     }
 };
@@ -86,9 +89,12 @@ export default {
     }
     &-operation {
         color:#999;
+        button {
+            border: none;
+            background: transparent;
+        }
         .answer-btn {
             // display: inline-block;
-            border: none;
             text-align: center;
             line-height: 26px;
             background: #e3edf8;
@@ -129,6 +135,7 @@ export default {
             background-image: url('./images/comment.png');
             background-repeat: no-repeat;
             background-position: left center; 
+            color: #999;
         }
     }
     &-comments {

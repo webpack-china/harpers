@@ -24,6 +24,7 @@ const getters = {
 const actions = {
     getSelectedQts ({ commit, state }, params) {
         qustionService.getQuestions().then(function (response) {
+            console.log(response);
             commit(FETCH_LIST_SUCCESS, {
                 data: response.data
             });

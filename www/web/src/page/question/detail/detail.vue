@@ -1,69 +1,131 @@
 <template>
-    <div>
-        <QuestionDetail :title="questionTitle" :content="questionContent" :tag="questionTag"></QuestionDetail>
+    <div class="q-detail">
+        <QuestionDetail ref="detail" :title="questionTitle" :content="questionContent" :tag="questionTag" :summary="summary" ></QuestionDetail>
         <QAList :answers="answers"></QAList>
-        <div id="qa-write-answer">
-            <MarkDown
-            :mdValuesP="mdValue"
-            :fullPageStatusP="false"
-            :editStatusP="false"
-            :previewStatusP="false"
-            :navStatusP="false"
-            :placeholder="'添加你的答案'"
-            @childevent="childEventHandler">
-            </MarkDown>
+        <div class="question-editor">
+            <div class="question-answer-author">
+                <img :src="user.avatar_url">
+                <span>{{user.name}}</span>
+            </div>
+            <div class="question-answer-editor">
+                <MarkDown
+                :mdValuesP="mdValue"
+                :fullPageStatusP="false"
+                :editStatusP="false"
+                :previewStatusP="false"
+                :navStatusP="false"
+                :placeholder="'添加你的答案'"
+                @childevent="childEventHandler">
+                </MarkDown>
+            </div>
         </div>
-        <div>
-            <button @click="handleAnswer">提交回答</button>
+        <div class="detail-operation">
+            <btn class="detail-submit" @click="handleAnswer" type="primary" :width="100">提交回答</btn>
         </div> 
-
+        <Backtop></Backtop>
     </div>
 </template>
 
 <style lang="less">
+    .q-detail {
+        margin-top: 54px;
+        padding-bottom: 80px;
+    }
    .mdContainer {
-    margin-left: 20px;
-    width: 680px;
-   } 
+        width: 730px;
+   }
+   .detail-operation {
+    width: 980px;
+    position: relative;
+    margin: 0 auto;
+    padding-top: 20px;
+    .detail-submit {
+        position: absolute;
+        right: 250px;
+    }
+}
+   .question-editor {
+        width: 980px;
+        padding-top: 30px;
+        margin: 0 auto;
+        .question-answer-author {
+            padding: 10px 0;
+            img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        .question-answer-editor {
+            .mdContainer {
+                .navContainer {
+                    border-top:1px solid #eee;
+                    border-bottom:1px solid #ddd;
+                }
+                .mdBodyContainer {
+                    align-items:flex-start;
+                    .editContainer {
+                        min-height: 280px;
+                        background:#f7f8fa;
+                    }
+                    .previewContainer {
+                        background:#fcfaf2;
+                    }
+                }
+            }
+        }
+   }
 </style>
 
 <script>
+// import Vue from 'vue';
+// import scroll from 'vue-scroll';
 import QuestionDetail from './question_detail.vue';
 import QAList from './list.vue';
-import { MarkDown } from 'Components';
-import { mapActions } from 'vuex';
+import { MarkDown, Button, Backtop } from 'Components';
+import { mapActions, mapState } from 'vuex';
+
+// Vue.use(scroll);
 
 export default {
     data() {
         return {
             mdValue: '',
-            timeoutHandle: null
+            detailHeight: 0,
+            timeoutHandle: null,
+            summary: false,
+            handleListener: null
         };
     },
     components: {
         QuestionDetail,
         QAList,
-        MarkDown
+        MarkDown,
+        Btn: Button,
+        Backtop
     },
     computed: {
-        questionTitle() {
-            return this.$store.state.Detail.question.title;
-        },
-        questionTag() {
-            return this.$store.state.Detail.question.tag;
-        },
-        questionContent() {
-            return this.$store.state.Detail.question.content;
-        },
-        answers() {
-            return this.$store.state.Detail.answers;
-        }
+        ...mapState({
+            user: state => state.User.user,
+            questionTitle: state => state.Detail.question.title,
+            questionTag: state => state.Detail.question.tag,
+            questionContent: state => state.Detail.question.content,
+            answers: state => state.Detail.answers,
+        })
     },
     watch: {
         '$route': 'fetchData'
     },
     created() {
         this.fetchData();
+    },
+    mounted() {
+        this.handleListener = document.addEventListener('scroll', () => {
+            // this.handleScroll();
+        });
+        this.detailHeihgt = this.$refs.detail.offsetHeight;
+    },
+    beforeDestroy() {
+        document.removeEventListener('scroll', this.handleListener);
     },
     methods: {
         ...mapActions(['updateMdValue', 'getDetail', 'addAnswer']),
@@ -81,6 +143,11 @@ export default {
         handleAnswer() {
             let id = this.$route.params.id;
             this.addAnswer({id});
+        },
+        handleScroll() {
+            if (document.body.scrollTop - this.detailHeight + 50 > 0) {
+                this.summary = true;
+            }
         }
     }
 };

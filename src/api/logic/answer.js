@@ -34,6 +34,7 @@ export default class extends think.logic.base {
    */
   postAction() {
     this.rules = {
+      // route change, can't get these data
       // question_id: 'int|required',
       // markdown_content: 'string|required'
     };

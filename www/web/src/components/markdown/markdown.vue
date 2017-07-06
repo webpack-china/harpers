@@ -158,7 +158,8 @@
                 }
             },
             addStrikethrough: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                // let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = this.$refs.mdEditor;
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -182,7 +183,8 @@
                 }
             },
             addItalic: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                // let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = this.$refs.mdEditor;
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -194,7 +196,8 @@
                 }
             },
             setStrong: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                // let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = this.$refs.mdEditor;
                 let point = range.getCursortPosition(textareaDom);
             },
             addLine: function() {
@@ -204,7 +207,8 @@
                 insertContent("[Vue](https://cn.vuejs.org/images/logo.png)", this);
             },
             addQuote: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                // let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = this.$refs.mdEditor;
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -246,21 +250,27 @@
             },
             fullPageFn: function() {
                 this.fullPageStatus = !this.fullPageStatus;
-                let maxEditScrollHeight=document.querySelector('.mdEditor').scrollHeight-document.querySelector('.mdEditor').clientHeight;
-                let maxPreviewScrollHeight=document.querySelector('.previewContainer').scrollHeight-document.querySelector('.previewContainer').clientHeight;
-                this.maxEditScrollHeight = maxEditScrollHeight
-                this.maxPreviewScrollHeight = maxPreviewScrollHeight
+                let textareaDom = this.$refs.mdEditor;
+                if(this.previewStatus) {
+                    let previewContainerDom = this.$refs.previewContainer;
+                    let maxEditScrollHeight = textareaDom.scrollHeight - textareaDom.clientHeight;
+                    let maxPreviewScrollHeight = previewContainerDom.scrollHeight - previewContainerDom.clientHeight;
+                    this.maxEditScrollHeight = maxEditScrollHeight;
+                    this.maxPreviewScrollHeight = maxPreviewScrollHeight;
+                }
             },
             previewScroll: function(e, position) {
                 if(this.maxEditScrollHeight!==0){
                     let topPercent=position.scrollTop/this.maxPreviewScrollHeight;
-                    document.querySelector('.mdEditor').scrollTop = this.maxEditScrollHeight*topPercent;
+                    let textareaDom = this.$refs.mdEditor;
+                    textareaDom.scrollTop = this.maxEditScrollHeight*topPercent;
                 }
             },
             editScroll:function(e, position){
                 if(this.maxPreviewScrollHeight!==0){
                     let topPercent=position.scrollTop/this.maxEditScrollHeight;
-                    document.querySelector('.previewContainer').scrollTop = this.maxPreviewScrollHeight*topPercent;
+                    let previewContainerDom = this.$refs.previewContainer;
+                    previewContainerDom.scrollTop = this.maxPreviewScrollHeight*topPercent;
                 }
             },
             happyDay:function(){
@@ -308,7 +318,8 @@
     .mdContainer {
         width: 100%;
         height: 100%;
-        background: lightblue;
+        border: 1px solid #eee;
+        // background: lightblue;
         &.fullPage {
             position: fixed;
             z-index: 1000;
@@ -374,16 +385,17 @@
         height: 100%;
         width: 100%;
         box-sizing: border-box;
-        border-right: 1px solid #ddd;
-        background: #333;
+        // border-right: 1px solid #ddd;
+        // background: #333;
         color: #fff;
         padding: 10px;
         .mdEditor {
+            border: none;
             height: 100%;
             width: 100%;
             background: transparent;
             outline: none;
-            color: #fff;
+            color: #333;
             resize: none;
         }
     }

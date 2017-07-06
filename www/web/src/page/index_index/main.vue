@@ -156,8 +156,13 @@
     /*********** 顶部导航栏start **********/
     .h-nav-wrap {
         background-color: #2B3A42;
+        z-index: 999;
         min-width: 1024px;
         overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
     }
     .h-nav-bar {
         margin: 0 auto;

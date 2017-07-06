@@ -15,6 +15,7 @@ class UserService {
      * 获取用户信息
      * @return {Promise}
      */
+     // TODO. get one user
     getUser (params) {
         return xhr({
             method: 'get',

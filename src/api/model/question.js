@@ -4,7 +4,10 @@ export default class extends Base {
   relation = {
     tag: think.model.MANY_TO_MANY,
     user: think.model.BELONG_TO,
-    answer: think.model.HAS_MANY,
+    answer: {
+      type: think.model.HAS_MANY,
+      page: [1, 10]
+    },
     comment: think.model.HAS_MANY
   }
   

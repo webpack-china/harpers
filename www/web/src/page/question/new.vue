@@ -96,26 +96,26 @@ export default {
         border-radius:4px;
     }
 }
-
-.mdContainer {
-    .navContainer {
-        border-top:1px solid #eee;
-        border-bottom:1px solid #ddd!important;
-    }
-    .mdBodyContainer {
-        height:500px!important;
-        align-items:flex-start!important;
-        .editContainer {
-            background:#FFF;
-            textarea{
-                border:none;
-                color:#333!important;
-            }
+.question-new {
+    .mdContainer {
+        .navContainer {
+            border-top:1px solid #eee;
+            border-bottom:1px solid #ddd!important;
         }
-        .previewContainer {
-            background:#fcfaf2;
+        .mdBodyContainer {
+            height:500px!important;
+            align-items:flex-start!important;
+            .editContainer {
+                background:#FFF;
+                textarea{
+                    border:none;
+                    color:#333!important;
+                }
+            }
+            .previewContainer {
+                background:#fcfaf2;
+            }
         }
     }
 }
-
 </style>

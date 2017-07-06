@@ -1,37 +1,41 @@
 <template>
 <div class="question-detail">
-    <div class="question-detail-wrap">
-    <Tags :tags="tag" v-show="tag.length != 0"></Tags>
-    <div class="h-q-content">
-        <p class="h-q-content-title">{{title}}</p>
-        <div class="h-q-content-detail">
-            <div class="h-q-content-wrap" v-html="content"></div>
-            <span class="btn btn-text" v-show="true" @click ="handleExpand">{{btnText}}</span>
+    <div class="question-detail-wrap" :class="classes">
+        <Tags :tags="tag" v-show="tag.length != 0"></Tags>
+        <div class="h-q-content">
+            <p class="h-q-content-title">{{title}}</p>
+            <div class="h-q-content-detail">
+                <span class="h-q-content-wrap" v-html="content"></span>
+                <!-- <span class="btn btn-text" v-show="true" @click ="handleExpand">{{btnText}}</span> -->
+            </div>
         </div>
-    </div>
-    <button class="btn-write"><a href="#qa-write-answer">写回答</a></button>
+        <btn :width="80" class="btn-write" type="primary">写回答</btn>
     </div>
 </div> 
 </template>
 
 <script>
-import { Tags } from 'Components';
+import { Tags, Button } from 'Components';
 
 export default {
 
     name: 'QuestionDetail',
     components: {
-        Tags
+        Tags,
+        Btn: Button
     },
     data () {
         return {
             expand: true,
         };
     },
-    props: ['tag', 'title', 'content'],
+    props: ['tag', 'title', 'content', 'summary'],
     computed: {
         btnText() {
             return this.expand ? '收起' : '展示全部';
+        },
+        classes() {
+            return !this.summary ? '' : 'question-summary';
         }
     },
     methods: {
@@ -48,7 +52,7 @@ export default {
 <style lang="less">
 .question-detail {
     background-color: #f7f8fa;
-    box-shadow: 0px 0px 4px 1px #ddd;
+    // box-shadow: 0px 0px 4px 1px #ddd;
 }
 .question-detail-wrap {
     width: 980px;
@@ -58,6 +62,7 @@ export default {
     padding: 30px 0px;
     &.question-summary {
         padding: 10px 0;
+        min-height: 30px;
         .h-tags{display: none;}
         .h-q-content-title {margin-bottom: 0;}
         .h-q-content-detail {display: none;}
@@ -70,7 +75,7 @@ export default {
     margin-bottom: 12px;
 }
 .h-q-content {
-    max-width: 700px;
+    max-width: 730px;
     font-size: 14px;
     color: #333;
     &-title {
@@ -89,13 +94,6 @@ export default {
     position: absolute;
     right: 0px;
     bottom: 30px;
-    border: 0;
-    font-size: 18px;
-    color: #fff;
-    background:#1d78c1;
-    border-radius:4px;
-    width:80px;
-    height:36px;
     a {
         color: #fff;
         text-decoration: none;

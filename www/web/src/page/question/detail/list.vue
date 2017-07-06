@@ -41,16 +41,16 @@ export default {
 
 <style lang="less">
 .answer-list {
-    // padding: 20px 0 20px 20px;
+    padding-top: 20px;
     width: 980px;
     margin: 0 auto;
     .answer-total {
-        width: 700px;
+        width: 730px;
         border-bottom: 1px solid #d8d8d8;
         padding: 10px 0;
     }
     ul {
-        width: 700px;
+        width: 730px;
     }
 }
 
