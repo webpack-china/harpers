@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app">
         <header class="h-nav-wrap">
             <div class="h-nav-bar clearfix">
                 <router-link to="/" class="h-link-logo">webpack</router-link>
@@ -153,6 +153,9 @@
     }
     /*********** 公共样式end **********/
 
+    .app {
+        min-width: 1080px;
+    }
     /*********** 顶部导航栏start **********/
     .h-nav-wrap {
         background-color: #2B3A42;

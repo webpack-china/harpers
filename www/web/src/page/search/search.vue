@@ -62,6 +62,7 @@
 
 <style lang="less">
     .search-wrap {
+        margin-top: 54px;
         display:flex;
         margin: auto;
         padding-top: 30px;

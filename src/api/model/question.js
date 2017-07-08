@@ -6,7 +6,9 @@ export default class extends Base {
     user: think.model.BELONG_TO,
     answer: {
       type: think.model.HAS_MANY,
-      page: [1, 10]
+      page: [1, 10],
+      // field: 'id,count',
+      // count: true
     },
     comment: think.model.HAS_MANY
   }

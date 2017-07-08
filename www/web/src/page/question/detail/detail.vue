@@ -65,6 +65,7 @@
                     align-items:flex-start;
                     .editContainer {
                         min-height: 280px;
+                        height: 280px;
                         background:#f7f8fa;
                     }
                     .previewContainer {
